@@ -1,0 +1,110 @@
+{
+  "namespace": "bte",
+  "tokens": [
+    {
+      "name": "SelectNode",
+      "msg": "Select"
+    },
+    {
+      "name": "SequenceNode",
+      "msg": "Sequence"
+    },
+    {
+      "name": "SucceederNode",
+      "msg": "Succeeder"
+    },
+    {
+      "name": "InverterNode",
+      "msg": "Inverter"
+    },
+    {
+      "name": "RepeatUntilSuccessNode",
+      "msg": "while(!success)"
+    },
+    {
+      "name": "RepeatUntilFailNode",
+      "msg": "while(!fail)"
+    },
+    {
+      "name": "RepeatWhileSuccessNode",
+      "msg": "while(success)"
+    },
+    {
+      "name": "RepeatWhileFailNode",
+      "msg": "while(fail)"
+    },
+    {
+      "name": "RepeatForNode",
+      "msg": "for(i<N)",
+      "args": ["int"]
+    },
+    {
+      "name": "PortNode",
+      "msg": "Port"
+    },
+    {
+      "name": "IdleNode",
+      "msg": "Sleep"
+    },
+    {
+      "name": "TryCatchNode",
+      "msg": "Try-Catch"
+    },
+    {
+      "name": "TryCatchFinallyNode",
+      "msg": "Try-Catch-Finally"
+    },
+    {
+      "name": "SelectIfNode",
+      "msg": "Select-If"
+    },
+    {
+      "name": "ActionNode",
+      "msg": "Action"
+    },
+    {
+      "name": "PredicateNode",
+      "msg": "?"
+    },
+    {
+      "group": "Log Traces",
+      "tokens": [
+        {
+          "name": "RogueNode",
+          "msg": "rogue node detected!"
+        },
+        {
+          "name": "ExceptionIgnored",
+          "msg": "Exception ignored!",
+          "args": ["int"]
+        },
+        {
+          "name": "UnhandledException",
+          "msg": "Unhandled Exception!",
+          "args": ["int"]
+        },
+        {
+          "name": "ExceptionStack",
+          "msg": "Exception Stack",
+          "args": ["int", "token"]
+        },
+        {
+          "name": "Title",
+          "args": ["string"]
+        },
+        {
+          "name": "Copyright",
+          "args": ["string"]
+        },
+        {
+          "name": "InvalidState",
+          "msg": "A node's state is corrupted! Ensure the same data type is used through out the node implementation."
+        },
+        {
+          "name": "FatalError",
+          "msg": "A severe problem has occurred with a tree."
+        }
+      ]
+    }
+  ]
+}

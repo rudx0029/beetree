@@ -1,0 +1,11 @@
+{
+  "version": "0",
+  "name": "HelloWorld",
+  "items": [
+    {
+      "tag": "USER_BTN_DEPRESSED",
+      "desc": "true when the user button is depressed",
+      "type": "bool"
+    }
+  ]
+}

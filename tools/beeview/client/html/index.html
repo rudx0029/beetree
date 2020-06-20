@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font: 13px Helvetica, Arial;
+      background-color: whitesmoke;
+      /* height: 100%; */
+    }
+
+    .title {
+      margin-top: 40px;
+      margin-bottom: 10px;
+      padding: 5px;
+      border-bottom-color: #ccc;
+      border-bottom-style: solid;
+      border-bottom-width: 4px;
+    }
+
+    div {
+
+      background-color: #fff;
+    }
+
+    table.register tr td {
+      height: 25px;
+      vertical-align: middle;
+    }
+
+    table.register tr td.label {
+      font-weight: bolder;
+      text-align: left;
+      padding-right: 35px;
+      color: #888;
+    }
+
+    table.register tr td.value {
+      width: 100px;
+      text-align: right
+    }
+
+    table.register tr td.unit {
+      text-align: left;
+      padding-left: 20px;
+    }
+
+    /* Style the tab */
+
+    .tab {
+      float: left;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+      width: 100px;
+      height: 200px;
+      margin-bottom: 5px;
+    }
+
+    /* Style the buttons that are used to open the tab content */
+
+    .tab button {
+      display: block;
+      background-color: inherit;
+      color: black;
+      padding: 22px 16px;
+      width: 100%;
+      border: none;
+      outline: none;
+      text-align: left;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    /* Change background color of buttons on hover */
+
+    .tab button:hover {
+      background-color: #feeb7f;
+    }
+
+    /* Create an active/current "tab button" class */
+
+    .tab button.active {
+      background-color: #ccc;
+    }
+
+    /* Style the tab content */
+
+    .tabcontent {
+      float: left;
+      padding: 0px 12px;
+      border: 1px solid #ccc;
+      border-right-style: none;
+      width: 690px;
+      border-left: none;
+      height: 200px;
+      margin-bottom: 5px;
+      overflow: auto;
+    }
+
+    /* Style the tab */
+    .menu_tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+    }
+
+    /* Style the buttons that are used to open the tab content */
+    .menu_tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+    }
+
+    /* Change background color of buttons on hover */
+    .menu_tab button:hover {
+      background-color: #feeb7f;
+    }
+
+    /* Create an active/current tablink class */
+    .menu_tab button.active {
+      background-color: #ccc;
+    }
+
+    /* Style the tab content */
+    .menu_tabcontent {
+      display: none;
+    }
+
+    .visible {
+      display: block;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #traces_container {
+      display: block;
+      overflow: auto;
+      margin: 5px;
+      width: 800px;
+      min-height: 400px;
+      height: 400px;
+      border-top-style: solid;
+      border-top-color: #ccc;
+      border-top-width: 1px;
+      border-bottom-style: solid;
+      border-bottom-color: #ccc;
+      border-bottom-width: 1px;
+    }
+
+    #traces {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      font: 14px Courier;
+      background-color: #f1f1f1;
+    }
+
+
+    .box {
+      width: 860px;
+      position: absolute;
+      left: 50%;
+      margin: 0 0 0 -400px;
+      padding-left: 25px;
+      padding-right: 25px;
+      border-left-style: solid;
+      border-left-color: #ccc;
+      border-left-width: 1px;
+      border-right-style: solid;
+      border-right-color: #ccc;
+      border-right-width: 1px;
+      display: flex;
+      flex-flow: column;
+      height: 100%;
+    }
+
+    .box .row {
+      /* border: 1px dotted grey; */
+    }
+
+    .box .row.header {
+      flex: 0 1 auto;
+      /* The above is shorthand for:
+      flex-grow: 0,
+      flex-shrink: 1,
+      flex-basis: auto
+      */
+    }
+
+    .box .row.content {
+      flex: 1 1 auto;
+    }
+
+    .box .row.footer {
+      flex: 0 1 40px;
+    }
+
+
+    #mynetwork {
+      width: 800px;
+      height: 800px;
+
+    }
+
+    .scope {
+      display: block
+    }
+  </style>
+
+  <script src="/jquery/dist/jquery.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/underscore/underscore.js"></script>
+  <script type="text/javascript" src="/vis/dist/vis.js"></script>
+  <link href="/vis/dist/vis.css" rel="stylesheet" type="text/css" />
+
+  <script>
+    function openRegister(evt, registerName) {
+      // Declare all variables
+      var i, tabcontent, tablinks;
+
+      // Get all elements with class="tabcontent" and hide them
+      $(".tabcontent").removeClass("visible").addClass("hidden");
+
+      // Get all elements with class="tablinks" and remove the class "active"
+      $(".tablinks").removeClass("active");
+
+      // Show the current tab, and add an "active" class to the link that opened the tab
+      $("#" + registerName).removeClass("hidden").addClass("visible");
+      evt.currentTarget.className += " active";
+    }
+
+    function verb2str(json) {
+      switch (json.verb) {
+        case 0: return "dbg";
+        case 1: return "inf";
+        case 2: return "wrn";
+        case 3: return "err";
+        case 4: return "ftl";
+      }
+    }
+
+    const TraceChannelEnum = {
+      LOG: { name: 'Log', value: 0 },               // Channel to send log messages on.
+      NODES: { name: 'Nodes', value: 1 },          // Channel to send node changes on
+      REGISTRY: { name: 'Registry', value: 2 },       // Dedicated channel for continuous streaming registry banks
+      DIAGNOSTICS: { name: 'Diagnostics', value: 3 },    // Channel dedicated to continuous streaming of key-value pairs.
+      CH_4_RESERVED: { name: 'CH_4_Reserved', value: 4 },  // Reserved for future use
+      CH_5_RESERVED: { name: 'CH_5_Reserved', value: 5 },  // Reserved for future use
+      USER_1: { name: 'User_1', value: 6 },         // Dedicated channel for user
+      USER_2: { name: 'User_2', value: 7 },         // Dedicated channel for user
+    }
+
+    const TreeTypeEnum = {
+      BEHAVIOR:{ name: 'behavior', value: 0 },
+      REFLEX:{ name: 'reflex', value: 1 },
+      RESERVED1:{ name: 'reserved1', value:2 },
+      RESERVED2:{ name: 'reserved2', value:3 },
+      NUM_TREES:{ name: 'reserved', value:4 },
+    }
+
+    function formatAngleItems(reg_msg) {
+      if ($('#chkShowRadAsDeg').is(':checked') && reg_msg.item_type === 'mrad') {
+        reg_msg.item_type = 'deg';
+        reg_msg.item_value = (180.0 * (reg_msg.item_value / 1000.0) / Math.PI).toFixed(3);
+      }
+      return reg_msg;
+    }
+
+    function can_show_trace(json) {
+      return json.ch != TraceChannelEnum.REGISTRY.value;
+    }
+
+    function can_update_tree(json) {
+      update = false
+      if (json.ch == TraceChannelEnum.NODES.value) {
+        // show behavior tree
+        update = json.args[0].tree == TreeTypeEnum.BEHAVIOR.value && $('#chkShowBehaviorTree').is(':checked')
+        // show reflex tree
+        || json.args[0].tree == TreeTypeEnum.REFLEX.value && $('#chkShowReflexTree').is(':checked');
+      }
+      return update;
+    }
+
+    function clear_log() {
+      $('#traces li').remove();
+    }
+
+    var tree = [];
+    // latest_tree is a queue of the last active "extent" nodes.
+    var latest_tree = [];
+    var latest_tree_extent = 1;  // for now show only the active node..
+    var nodes = new vis.DataSet({ id: 0, label: 'root' });
+    var edges = new vis.DataSet({ from: 0, to: 0 });
+
+    function make_tree() {
+      // create an array with nodes
+
+      var data = {
+        nodes: nodes,
+        edges: edges
+      }
+
+      // create a network
+      var container = document.getElementById('mynetwork');
+
+      var options = {
+        layout: {
+          hierarchical: true
+        },
+        nodes: {
+          shape: 'box',
+          shapeProperites: {
+            borderRadius: 6,
+          },
+          color: {
+            border: 'black',
+            highlight: {
+              border: 'black',
+              background: '#ccc'
+            }
+          }
+        }
+      };
+
+      // initialize your network!
+      var network = new vis.Network(container, data, options);
+    }
+
+    function to_viz(node) {
+      return {
+        id: (node.child + (node.parent * 32768)), // what does this number mean??
+        label: "(" + node.child + ")" + "\n" + node.msg
+      }
+    }
+
+    function update_tree(node) {
+
+      if (tree.length > 0) {
+        var found = false;
+        tree.some(function (n) {
+          if (_.isEqual(n.tree, node.tree) && _.isEqual(n.parent, node.parent) && _.isEqual(n.child, node.child)) {
+            found = true;
+
+            latest_tree.push(node);
+            if (latest_tree.length > latest_tree_extent) {
+              latest_tree.shift();
+            }
+          }
+          return found;
+        });
+
+        if (!found) {
+          if (node.tree < TreeTypeEnum.NUM_TREES.value) {
+            // add the node to the meta tree
+            tree.push(node);
+
+            // set it as the active node
+            latest_tree.push(node);
+            if (latest_tree.length > latest_tree_extent) {
+              latest_tree.shift();
+            }
+
+            // add the node to the viz tree
+            nodes.add(to_viz(node));
+
+            // add an edge to the node to its parent/child
+            tree.forEach(function (n) {
+              if (_.isEqual(node.parent, n.child)) {
+                edges.add({ from: to_viz(n).id, to: to_viz(node).id })
+              }
+              else if (_.isEqual(node.child, n.parent)) {
+                edges.add({ from: to_viz(node).id, to: to_viz(n).id });
+              }
+            });
+          }
+        }
+      }
+      else {
+        //
+        // First node we have come across
+        //
+        tree.push(node);
+        nodes.remove({ id: 0, label: 'root' });
+        nodes.add(to_viz(node));
+
+        latest_tree.push(node);
+      }
+      //
+      // First put everything back.  magic RGB from the default values found in the vis documents.
+      //
+      tree.forEach(function (n) {
+        nodes.update({ id: to_viz(n).id, color: { background: '#ccc' } });
+      });
+
+      //
+      // then run the expanse. magic RGB from the "highlighted" value in the documents.
+      //
+      latest_tree.forEach(function (n) {
+        nodes.update({ id: to_viz(n).id, color: { background: '#feeb7f' } });
+      });
+    }
+
+    // $(document).ready(function() {});
+    $(function () {
+      var socket = io();
+
+      make_tree();
+
+      socket.on('trace item', function (msg) {
+
+        json = $.parseJSON(msg);
+        if (can_show_trace(json)) {
+          var msgp = json.ts + ": ";
+          msgp += "[" + verb2str(json) + "] ";
+          msgp += json.msg;
+          msgp += " [" + json.args + "] ";
+          msgp += "(" + json.proc + ":" + json.ch + ":" + json.ch_tag + ")" + "\n";
+
+          var traces = $('#traces')
+          while (traces.children().length > 1000) {
+            $('#traces li:last-child').remove();
+          }
+          traces.prepend($('<li>').text(msgp));
+
+          // we want to keep NODES as trace channels
+          // in order to have them logged, not just displayed
+          // anywho - if this came from the nodes channel, then update the tree.
+          if(can_update_tree(json)) {
+            var node = JSON.parse(JSON.stringify(json.args[0]));
+
+            node.msg = {};
+            node.msg = json.msg;
+
+            update_tree(node, msgp);
+          }
+        }
+      });
+
+      socket.on('registry item', function (msg) {
+        json = $.parseJSON(msg);
+        json = formatAngleItems(json);
+        var id = 'registry_' + json.bank_id;
+        var tab_id = id + '_tab';
+        var content_id = id + '_content'
+        var item_id = id + '_item_' + json.item_id;
+
+        if ($('#' + tab_id).length) {
+          if ($('#' + item_id).length) {
+            $('#' + item_id).find('td.value').text(json.item_value);
+            $('#' + item_id).find('td.unit').text(json.item_type);
+          }
+          else {
+            $('#' + content_id).find('table.register').append(
+              $('<tr>')
+                .attr('id', item_id)
+                .append($('<td>').text(json.item).addClass('label'))
+                .append($('<td>').text(json.item_value).addClass('value'))
+                .append($('<td>').text(json.item_type).addClass('unit'))
+                .attr("id", item_id)
+            );
+          }
+        }
+        else {
+          var elements_exist = $('#registry_tabs').children().length > 0;
+
+          var btn = $('<button>')
+            .attr("id", tab_id)
+            .text(json.bank)
+            .addClass('tablinks')
+          if (!elements_exist)
+            btn.addClass('active');
+
+
+          $('#registry_tabs')
+            .append(btn)
+            .on('click', '#' + tab_id, function (event) { openRegister(event, content_id); });
+
+          var table = $('<table>')
+            .addClass('register')
+            .append(
+              $('<tr>')
+                .append($('<td>').text(json.item).addClass('label'))
+                .append($('<td>').text(json.item_value).addClass('value'))
+                .append($('<td>').text(json.item_type).addClass('unit'))
+                .attr("id", item_id)
+            );
+
+
+          var div = $('<div>').attr("id", content_id).addClass('tabcontent').append(table);
+          if (!elements_exist)
+            div.addClass('visible');
+          else
+            div.addClass('hidden');
+
+          $('#registry_container').append(div);
+        }
+      });
+    });
+
+    function showTab(evt, name) {
+      // Declare all variables
+      var i, tabcontent, tablinks;
+
+      // Get all elements with class="tabcontent" and hide them
+      $(".menu_tabcontent").each(function (i, el) {
+        el.style.display = "none"
+      });
+
+      // Get all elements with class="tablinks" and remove the class "active"
+      $(".menu_tablinks").each(function (i, el) {
+        el.className = el.className.replace(" active", "");
+      });
+
+
+      $("." + name).css("display", "block");
+      // Show the current tab, and add an "active" class to the button that opened the tab
+      evt.currentTarget.className += " active";
+    }
+
+  </script>
+
+</head>
+
+<body>
+  <div class="box">
+    <div class="row header title">
+      <div style="float: left">
+        <img src="img/beetree-logo.png" height="20px" style="margin-right:5px">
+      </div>
+      <h2>BeeView </h2>
+    </div>
+    <div class="row content">
+      <!-- Tab links -->
+      <div class="menu_tab">
+        <button class="menu_tablinks active" onclick="showTab(event, 'scope')">Scope</button>
+        <button class="menu_tablinks" onclick="showTab(event, 'tree')">Tree</button>
+      </div>
+
+      <div class="row content menu_tabcontent scope">
+        <div id="registry_container" style="margin: 5px; float: none; clear: both;">
+          <h3 style="margin-bottom:5px">Data Registers</h3>
+          <div id="registry_tabs" class="tab" style="overflow:auto; direction: rtl">
+          </div>
+        </div>
+        <div style="clear: both">
+          <input type="checkbox" id="chkShowRadAsDeg" checked>results in degrees</input></div>
+      </div>
+
+      <div class="row content menu_tabcontent scope">
+        <div style="clear: both">
+          <h3 style="margin: 5px;">Log</h3>
+          <div id="traces_container">
+            <ul id="traces"> </ul>
+          </div>
+          <div>
+            <table style="display: inline-block">
+              <tr>
+                <td><input id="chkShowBehaviorTree" type="checkbox" checked /></td>
+                <td style="padding-left:3px">behavior nodes</td>
+                <td style="padding-left:10px"><input id="chkShowReflexTree" type="checkbox" /></td>
+                <td style="padding-left:3px">reflex nodes</td>
+              </tr>
+            </table>
+            <button onclick="clear_log()" style="width:50px; margin-right:10px; float:right">Clear</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row content menu_tabcontent tree">
+        <div id="mynetwork"></div>
+      </div>
+    </div>
+
+</body>
+
+</html>

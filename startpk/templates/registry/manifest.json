@@ -1,0 +1,205 @@
+{
+    "version": "0",
+    "registers": [
+        {
+            "tag": "Motion",
+            "items": [
+                {
+                    "tag": "MEASURED_VELOCITY",
+                    "desc": "Measured Velocity",
+                    "type": "mm/s"
+                },
+                {
+                    "tag": "MEASURED_ANG_VELOCITY",
+                    "desc": "Measured Angular Velocity",
+                    "type": "mrad/s"
+                },
+                {
+                    "tag": "MEASURED_ACCELERATION",
+                    "desc": "Measured Acceleration",
+                    "type": "mm/s^2"
+                },
+                {
+                    "tag": "COMMANDED_VELOCITY",
+                    "desc": "Commanded Velocity",
+                    "type": "mm/s"
+                },
+                {
+                    "tag": "COMMANDED_ANG_VELOCITY",
+                    "desc": "Commanded Angular Velocity",
+                    "type": "mrad/s"
+                },
+                {
+                    "tag": "COMMANDED_ACCELERATION",
+                    "desc": "Commanded Acceleration",
+                    "type": "mm/s^2"
+                }
+            ]
+        },
+        {
+            "tag": "Sensor",
+            "items": [
+                {
+                    "tag": "BUMP",
+                    "desc": "Bump",
+                    "type": "boolean"
+                },
+                {
+                    "tag": "BUMP_ZONE",
+                    "desc": "Bump Zone",
+                    "type": "facilities::BumpZone"
+                },
+                {
+                    "tag": "LEFT_WHEEL_DROP",
+                    "desc": "left wheel drop",
+                    "type": "boolean"
+                },
+                {
+                    "tag": "RIGHT_WHEEL_DROP",
+                    "desc": "right wheel drop",
+                    "type": "boolean"
+                },
+                {
+                    "tag": "KIDNAP",
+                    "desc": "kidnap detected",
+                    "type": "boolean"
+                },
+                {
+                    "tag": "KIDNAP_TRIGGER",
+                    "desc": "kidnap trigger",
+                    "type": "boolean"
+                }
+            ]
+        },
+        {
+            "tag": "Diagnostic",
+            "items": [
+                {
+                    "tag": "DELTA_HEADING",
+                    "desc": "turning heading angle",
+                    "type": "Angle"
+                },
+                {
+                    "tag": "RIGHT_ENCODER_TICKS",
+                    "desc": "right wheel encoder ticks",
+                    "type": "ticks"
+                },
+                {
+                    "tag": "LEFT_ENCODER_TICKS",
+                    "desc": "left wheel encoder ticks",
+                    "type": "ticks"
+                },
+                {
+                    "tag": "LAST_BUMP_ZONE",
+                    "desc": "bump zones",
+                    "type": "zone"
+                },
+                {
+                    "tag": "LAST_BOUNCE_ANGLE",
+                    "desc": "bounce angle",
+                    "type": "Angle"
+                },
+                {
+                    "tag": "LEFT_WHEEL_PWM",
+                    "desc": "left wheel pwm",
+                    "type": "ticks"
+                },
+                {
+                    "tag": "RIGHT_WHEEL_PWM",
+                    "desc": "right wheel pwm",
+                    "type": "ticks"
+                },
+                {
+                    "tag": "LEFT_WHEEL_CMD_VEL",
+                    "desc": "left wheel cmd vel",
+                    "type": "mm/s"
+                },
+                {
+                    "tag": "RIGHT_WHEEL_CMD_VEL",
+                    "desc": "right wheel cmd vel",
+                    "type": "mm/s"
+                }
+            ]
+        },
+        {
+            "tag": "WheelMotion",
+            "items": [
+                {
+                    "tag": "WHEEL_DISTANCE_LEFT",
+                    "desc": "Left Wheel Distance",
+                    "type": "mm"
+                },
+                {
+                    "tag": "WHEEL_DISTANCE_RIGHT",
+                    "desc": "Right Wheel Distance",
+                    "type": "mm"
+                },
+                {
+                    "tag": "WHEEL_VELOCITY_LEFT",
+                    "desc": "Left Wheel Measured Velocity",
+                    "type": "mm/s"
+                },
+                {
+                    "tag": "WHEEL_VELOCITY_RIGHT",
+                    "desc": "Right Wheel Measured Velocity",
+                    "type": "mm/s"
+                },
+                {
+                    "tag": "WHEEL_ACCELERATION_LEFT",
+                    "desc": "Left Wheel Measured Acceleration",
+                    "type": "mm/s^2"
+                },
+                {
+                    "tag": "WHEEL_ACCELERATION_RIGHT",
+                    "desc": "Right Wheel Measured Acceleration",
+                    "type": "mm/s^2"
+                }
+            ]
+        },
+        {
+            "tag": "Event",
+            "items": [
+                {
+                    "tag": "USER_EVENTS",
+                    "desc": "User Event Flags",
+                    "type": "flags"
+                }
+            ]
+        },
+        {
+            "tag": "Navigation",
+            "items": [
+                {
+                    "tag": "MEASURED_HEADING",
+                    "desc": "Measured Heading",
+                    "type": "mrad"
+                },
+                {
+                    "tag": "MEASURED_POSITION_X",
+                    "desc": "Measured X Coordinate",
+                    "type": "mm"
+                },
+                {
+                    "tag": "MEASURED_POSITION_Y",
+                    "desc": "Measured Y Coordinate",
+                    "type": "mm"
+                },
+                {
+                    "tag": "COMMANDED_HEADING",
+                    "desc": "Commanded Heading",
+                    "type": "mrad"
+                },
+                {
+                    "tag": "COMMANDED_POSITION_X",
+                    "desc": "Commanded X Coordinate",
+                    "type": "mm"
+                },
+                {
+                    "tag": "COMMANDED_POSITION_Y",
+                    "desc": "Commanded Y Coordinate",
+                    "type": "mm"
+                }
+            ]
+        }
+    ]
+}

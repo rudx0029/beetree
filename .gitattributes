@@ -1,0 +1,2 @@
+* text=auto
+thirdparty/googletest-release-1.10.0.tar.gz filter=lfs diff=lfs merge=lfs -text
