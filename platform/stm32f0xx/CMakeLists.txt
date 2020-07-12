@@ -67,6 +67,7 @@ target_sources(
         # build specs
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32f0xx/system/system_stm32f0xx.c>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32f0xx/hal/stm32f0xx_ll_utils.c>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32f0xx/hal/stm32f0xx_ll_adc.c>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32f0xx/hal/stm32f0xx_ll_dma.c>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32f0xx/hal/stm32f0xx_ll_exti.c>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32f0xx/hal/stm32f0xx_ll_gpio.c>
