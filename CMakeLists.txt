@@ -49,11 +49,6 @@ add_subdirectory(platform)
 add_subdirectory(startpk)
 add_subdirectory(tools/beeview)
 
-if(BEETREE_BUILD_EXAMPLES OR $CACHE{BEETREE_BUILD_EXAMPLES})
-    message(STATUS "[BeeTree] Configuring examples")
-    add_subdirectory(examples)
-endif()
-
 if(BUILD_TESTING)
     message(STATUS "[BeeTree] Configuring unit tests")
     add_subdirectory(test-api)
