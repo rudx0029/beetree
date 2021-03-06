@@ -18,7 +18,7 @@ Dependencies
 .. note: The extensive directory structure is in order to expose the vendor's bsp
 #]=======================================================================]
 
-if(NOT CMAKE_SYSTEM_PROCESSOR STREQUAL "cortex-m0+")
+if(NOT CMAKE_SYSTEM_PROCESSOR MATCHES "cortex-m0+")
     return()
 endif()
 
