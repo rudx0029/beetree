@@ -47,6 +47,7 @@ install(
 add_subdirectory(core)
 add_subdirectory(platform)
 add_subdirectory(startpk)
+add_subdirectory(experimental)
 add_subdirectory(tools/beeview)
 
 if(BUILD_TESTING)
