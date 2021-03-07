@@ -62,7 +62,7 @@ using ::testing::ElementsAreArray;
 
 TEST(Expected, copy_only_unexpected)
 {
-    using unexpected = bte::experimental::unexpected<CopyOnly>;
+    using unexpected = bte_experimental::unexpected<CopyOnly>;
 
     {  // constructor
         CopyOnly expect;
