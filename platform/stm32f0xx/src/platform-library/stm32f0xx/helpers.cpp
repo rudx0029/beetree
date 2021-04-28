@@ -212,5 +212,21 @@ namespace stm32f0xx
         }
 
     } // namespace i2c
+    
+    namespace spi
+    {
+        SPI_TypeDef* get(SPIDevID spi)
+        {
+            switch (spi)
+            {
+                default:
+                case SPIDevID::SPI_1:
+                    return SPI1;
+                case SPIDevID::SPI_2:
+                    return SPI1;
+            }
+        }
+
+    } // namespace spi
 
 }  // namespace stm32f0xx
