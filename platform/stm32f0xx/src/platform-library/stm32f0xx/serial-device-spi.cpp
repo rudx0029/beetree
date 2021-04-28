@@ -31,7 +31,7 @@ namespace stm32f0xx
         disable_transfer(spi);
 
         LL_DMA_SetDataLength(DMA1, LL_DMA_CHANNEL_2, buffer_elements*sizeof(uint32_t));
-        LL_DMA_SetMemoryAddress(DMA1,LL_DMA_CHANNEL_2, dma_buffer);
+        LL_DMA_SetMemoryAddress(DMA1,LL_DMA_CHANNEL_2, (uint32_t)dma_buffer);
 
         enable_transfer(spi);
     }
@@ -68,7 +68,7 @@ namespace stm32f0xx
         {
             // volatile int count_out = 0;
             /* Clear flag DMA transfer complete */
-            for(std::size_t i=0; i<NFM_DATA_BUFFER_SIZE; i++)
+            for(std::size_t i=0; i<buffer_elements; i++)
             {
                 copy_buffer[i] = dma_buffer[i];
             }
@@ -77,7 +77,7 @@ namespace stm32f0xx
             // Need to reset the buffer to keep things in sync. in lue of failure.
             //
             LL_DMA_SetDataLength(DMA1, LL_DMA_CHANNEL_2, buffer_elements*sizeof(uint32_t));
-            LL_DMA_SetMemoryAddress(DMA1, LL_DMA_CHANNEL_2, dma_buffer);
+            LL_DMA_SetMemoryAddress(DMA1, LL_DMA_CHANNEL_2, (uint32_t)dma_buffer);
             enable_transfer(spi::get(get_spi()));
         }
 

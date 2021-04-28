@@ -87,7 +87,7 @@ namespace stm32f0xx
         void disable_transfer(SPI_TypeDef* spi);
         void start_transfer(SPI_TypeDef* spi);
 
-        int buffer_elements = 0;
+        std::size_t buffer_elements = 0;
         uint32_t *dma_buffer = nullptr;
         uint32_t *copy_buffer = nullptr;
 

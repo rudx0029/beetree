@@ -78,7 +78,7 @@ namespace stm32g0xx {
         LL_SPI_Enable(SPIx);
     }
 
-    void boot_spi(SerialDevice_SPI&  serial, 
+    void boot(SerialDevice_SPI&  serial, 
               SPIDevID spi_id, 
               bte::ISystemClock& clock,
               int buffer_elements,
