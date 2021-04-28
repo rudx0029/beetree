@@ -10,12 +10,22 @@
 #pragma once
 
 #include <utility>
+#include "platform-library/stm32f0xx/spi-dev-id.hpp"
+#include "platform-library/stm32f0xx/helpers.hpp"
+#include "platform-library/stm32f0xx/hal/stm32f0xx_ll_spi.h"
+#include "platform-library/stm32f0xx/hal/stm32f0xx_ll_dma.h"
 #include "beetree/platform/i-serial-device.hpp"
 #include "beetree/platform/i-system-clock.hpp"
-#include "platform-library/stm32f0xx/spi-dev-id.hpp"
 
 namespace stm32f0xx
 {
+    //
+    // 4 by 32 bit (4 bytes)
+    //
+    #define NFM_DATA_BUFFER_ELEMENT_SIZE 4
+    #define NFM_DATA_BUFFER_SIZE 6
+    #define NFM_DATA_BUFFER_BYTES (NFM_DATA_BUFFER_SIZE * NFM_DATA_BUFFER_ELEMENT_SIZE)
+    extern uint32_t spi_buffer[NFM_DATA_BUFFER_SIZE];
     ///
     /// stm32f0xx Asynchronous Serial Interface for I2C devices.
     ///
