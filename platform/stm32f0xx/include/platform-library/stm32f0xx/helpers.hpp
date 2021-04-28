@@ -17,6 +17,7 @@
 #include "platform-library/stm32f0xx/system/stm32f0xx.h"
 #include "platform-library/stm32f0xx/usart-dev-id.hpp"
 #include "platform-library/stm32f0xx/i2c-dev-id.hpp"
+#include "platform-library/stm32f0xx/spi-dev-id.hpp"
 
 namespace stm32f0xx
 {
@@ -56,6 +57,11 @@ namespace stm32f0xx
     namespace i2c
     {
         I2C_TypeDef* get(I2CDevID i2c);
+    }
+
+    namespace spi
+    {
+        SPI_TypeDef* get(SPIDevID spi);
     }
 
 }  // namespace stm32f0xx
