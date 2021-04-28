@@ -31,7 +31,7 @@ namespace stm32g0xx
         disable_transfer(spi);
 
         LL_DMA_SetDataLength(DMA1, LL_DMA_CHANNEL_1, buffer_elements*sizeof(uint32_t));
-        LL_DMA_SetMemoryAddress(DMA1, LL_DMA_CHANNEL_1, dma_buffer);
+        LL_DMA_SetMemoryAddress(DMA1, LL_DMA_CHANNEL_1, (uint32_t)dma_buffer);
 
         enable_transfer(spi);
     }
@@ -46,7 +46,7 @@ namespace stm32g0xx
     {
         len = (len > buffer_elements) ? buffer_elements : len;
         const uint32_t *tmp = (const uint32_t *)(data);
-        for(size_t i = 0; i<len; i++)
+        for(std::size_t i = 0; i<len; i++)
         {
             dma_buffer[i] = tmp[i];
         }
