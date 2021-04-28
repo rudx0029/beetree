@@ -13,6 +13,7 @@
 #include "platform-library/stm32g0xx/discrete-output.hpp"
 #include "platform-library/stm32g0xx/serial-device-uart-dma.hpp"
 #include "platform-library/stm32g0xx/serial-device-i2c.hpp"
+#include "platform-library/stm32g0xx/serial-device-spi.hpp"
 #include "platform-library/stm32g0xx/system-clock.hpp"
 
 namespace stm32g0xx {
