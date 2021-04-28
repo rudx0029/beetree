@@ -10,13 +10,10 @@
 #pragma once
 
 #include <utility>
-// #include <stdalign.h>
 #include "beetree/platform/i-serial-device.hpp"
 #include "beetree/platform/i-system-clock.hpp"
-#include "platform-library/ring-q.hpp"
 #include "platform-library/stm32g0xx/gpio-pin.hpp"
 #include "platform-library/stm32g0xx/spi-dev-id.hpp"
-#include "platform-library/ring-q.hpp"
 
 namespace stm32g0xx
 {
