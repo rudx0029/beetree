@@ -13,9 +13,9 @@ namespace stm32g0xx
     ///
     /// I2C Device IDs
     ///
-    enum class I2CDevID
+    enum class SPIDevID
     {
-        I2C_1,
-        I2C_2,
+        SPI_1,
+        SPI_2,
     };
 }  // namespace stm32g0xx
