@@ -82,6 +82,22 @@ void boot(SerialDevice_UART_DMA& serial,
           const SerialParams&    device_cfg,
           bte::ISystemClock&     clock);
 
+///
+/// Boots and configures an i2c serial device, tying it to the given
+/// spi
+///
+/// @param serial       the spi device
+/// @param I2CDevID     the ID to get to the correct type
+/// @param clock        the system clock
+/// @param buffer_elements buffer type size
+/// @param dma_buffer       buffer
+/// @param copy_buffer      used to double buffer input
+///
+void boot(SerialDevice_SPI&  serial, 
+        SPIDevID spi_id, 
+        bte::ISystemClock& clock,
+        int buffer_elements,
+        uint32_t *dma_buffer);
 
 ///
 /// Boots and configures an i2c serial device, tying it to the given
