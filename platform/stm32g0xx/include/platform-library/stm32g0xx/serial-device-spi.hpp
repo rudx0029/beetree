@@ -10,10 +10,15 @@
 #pragma once
 
 #include <utility>
+
+#include "platform-library/stm32g0xx/spi-dev-id.hpp"
+#include "platform-library/stm32g0xx/helpers.hpp"
+#include "platform-library/stm32g0xx/hal/stm32g0xx_ll_spi.h"
+#include "platform-library/stm32g0xx/hal/stm32g0xx_ll_dma.h"
+#include "platform-library/stm32g0xx/gpio-pin.hpp"
+
 #include "beetree/platform/i-serial-device.hpp"
 #include "beetree/platform/i-system-clock.hpp"
-#include "platform-library/stm32g0xx/gpio-pin.hpp"
-#include "platform-library/stm32g0xx/spi-dev-id.hpp"
 
 namespace stm32g0xx
 {

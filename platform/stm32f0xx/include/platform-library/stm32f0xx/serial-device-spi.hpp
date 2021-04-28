@@ -10,14 +10,17 @@
 #pragma once
 
 #include <utility>
+#include "platform-library/stm32f0xx/spi-dev-id.hpp"
+#include "platform-library/stm32f0xx/helpers.hpp"
+#include "platform-library/stm32f0xx/hal/stm32f0xx_ll_spi.h"
+#include "platform-library/stm32f0xx/hal/stm32f0xx_ll_dma.h"
 #include "beetree/platform/i-serial-device.hpp"
 #include "beetree/platform/i-system-clock.hpp"
-#include "platform-library/stm32f0xx/spi-dev-id.hpp"
 
 namespace stm32f0xx
 {
     ///
-    /// stm32f0xx Asynchronous Serial Interface for I2C devices.
+    /// stm32f0xx Asynchronous Serial Interface for SPI devices.
     ///
     class SerialDevice_SPI : public bte::ISerialDevice
     {

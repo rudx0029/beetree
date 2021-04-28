@@ -7,9 +7,7 @@
 /// @file
 ///-----------------------------------------------------------------------------
 
-#include "platform-library/stm32g0xx/helpers.hpp"
-#include "platform-library/stm32g0xx/hal/stm32g0xx_ll_spi.h"
-#include "platform-library/stm32g0xx/hal/stm32g0xx_ll_dma.h"
+
 #include "platform-library/stm32g0xx/serial-device-spi.hpp"
 
 namespace stm32g0xx
