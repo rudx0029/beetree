@@ -22,7 +22,7 @@ namespace stm32f0xx
     ///
     /// stm32f0xx Asynchronous Serial Interface for SPI devices.
     ///
-    class SerialDevice_SPI : public bte::ISerialDevice
+    class SerialDevice_SPI_S : public bte::ISerialDevice
     {
     public:
 
