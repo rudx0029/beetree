@@ -12,21 +12,21 @@
 
 namespace stm32f0xx
 {
-    void SerialDevice_SPI::enable_transfer(SPI_TypeDef* spi)
+    void SerialDevice_SPI_S::enable_transfer(SPI_TypeDef* spi)
     {
         LL_SPI_EnableDMAReq_RX(spi);
         LL_DMA_EnableChannel(DMA1, LL_DMA_CHANNEL_2);
         LL_DMA_EnableIT_TC(DMA1, LL_DMA_CHANNEL_2);
     }
 
-    void SerialDevice_SPI::disable_transfer(SPI_TypeDef* spi)
+    void SerialDevice_SPI_S::disable_transfer(SPI_TypeDef* spi)
     {
         LL_DMA_DisableIT_TC(DMA1, LL_DMA_CHANNEL_2);
         LL_DMA_DisableChannel(DMA1, LL_DMA_CHANNEL_2);
         LL_SPI_DisableDMAReq_RX(spi);
     }
 
-    void SerialDevice_SPI::start_transfer(SPI_TypeDef* spi)
+    void SerialDevice_SPI_S::start_transfer(SPI_TypeDef* spi)
     {
         disable_transfer(spi);
 
@@ -39,7 +39,7 @@ namespace stm32f0xx
     //
     // write not active on register reflection
     //
-    int32_t SerialDevice_SPI::write(std::size_t address,
+    int32_t SerialDevice_SPI_S::write(std::size_t address,
                                     const uint8_t* data,
                                     std::size_t len,
                                     bte::chrono::duration_ms timeout)
@@ -47,7 +47,7 @@ namespace stm32f0xx
         return 0;
     }
 
-    int32_t SerialDevice_SPI::read(std::size_t address,
+    int32_t SerialDevice_SPI_S::read(std::size_t address,
                                     uint8_t* data,
                                     std::size_t len,
                                     bte::chrono::duration_ms timeout)
@@ -61,7 +61,7 @@ namespace stm32f0xx
         return len;
     }
 
-    void SerialDevice_SPI::on_interrupt()
+    void SerialDevice_SPI_S::on_interrupt()
     {
         // /* Check whether DMA transfer complete caused the DMA interruption */
         if(LL_DMA_IsActiveFlag_TC2(DMA1) == 1)

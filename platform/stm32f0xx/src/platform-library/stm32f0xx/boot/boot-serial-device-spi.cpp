@@ -74,7 +74,7 @@ namespace stm32f0xx {
 
     void start_transfer(SPI_TypeDef* spi);
 
-    void boot(SerialDevice_SPI&  serial, 
+    void boot(SerialDevice_SPI_S&  serial, 
               SPIDevID spi_id, 
               bte::ISystemClock& clock,
               int buffer_elements,

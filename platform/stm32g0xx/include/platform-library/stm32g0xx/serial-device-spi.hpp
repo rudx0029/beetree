@@ -25,13 +25,13 @@ namespace stm32g0xx
     ///
     /// stm32f0xx Asynchronous Serial Interface for I2C devices.
     ///
-    class SerialDevice_SPI : public bte::ISerialDevice
+    class SerialDevice_SPI_M : public bte::ISerialDevice
     {
     public:
         // static constexpr std::size_t BUFF_LEN{64};  ///< ring queue buffer size
         // static constexpr std::size_t DMA_BUFF_LEN{2 * sizeof(uint32_t)};
 
-        SerialDevice_SPI() = default;
+        SerialDevice_SPI_M() = default;
         ///
         /// Invoked by `platform::boot()` to associate the usart with this
         /// instance
@@ -99,4 +99,4 @@ namespace stm32g0xx
         bte::ISystemClock* m_clock;
         SPIDevID  m_spi;
     };
-}  // namespace stm32f0xx
+}  // namespace stm32g0xx
