@@ -106,7 +106,7 @@ void boot(SerialDevice_I2C&  serial, I2CDevID i2c_id, bte::ISystemClock& clock);
 /// @param dma_buffer       buffer
 /// @param copy_buffer      used to double buffer input
 ///
-void boot(SerialDevice_SPI&  serial, 
+void boot(SerialDevice_SPI_S&  serial, 
         SPIDevID spi_id, 
         bte::ISystemClock& clock,
         int buffer_elements,

@@ -26,7 +26,7 @@ namespace stm32f0xx
     {
     public:
 
-        SerialDevice_SPI() = default;
+        SerialDevice_SPI_S() = default;
         ///
         /// Invoked by `platform::boot()` to associate the usart with this
         /// instance

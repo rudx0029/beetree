@@ -94,7 +94,7 @@ void boot(SerialDevice_UART_DMA& serial,
 /// @param dma_buffer       buffer
 /// @param copy_buffer      used to double buffer input
 ///
-void boot(SerialDevice_SPI&  serial, 
+void boot(SerialDevice_SPI_M&  serial, 
         SPIDevID spi_id, 
         bte::ISystemClock& clock,
         int buffer_elements,
