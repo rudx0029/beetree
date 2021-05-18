@@ -75,6 +75,7 @@ target_sources(
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32f0xx/hal/stm32f0xx_ll_rcc.c>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32f0xx/hal/stm32f0xx_ll_tim.c>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32f0xx/hal/stm32f0xx_ll_i2c.c>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32f0xx/hal/stm32f0xx_ll_spi.c>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32f0xx/helpers.cpp>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32f0xx/boot/boot-discrete-io.cpp>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32f0xx/boot/boot-system-clock.cpp>
@@ -102,6 +103,7 @@ target_sources(
         $<INSTALL_INTERFACE:src/platform-library/stm32f0xx/hal/stm32f0xx_ll_rcc.c>
         $<INSTALL_INTERFACE:src/platform-library/stm32f0xx/hal/stm32f0xx_ll_tim.c>
         $<INSTALL_INTERFACE:src/platform-library/stm32f0xx/hal/stm32f0xx_ll_i2c.c>
+        $<INSTALL_INTERFACE:src/platform-library/stm32f0xx/hal/stm32f0xx_ll_spi.c>
         $<INSTALL_INTERFACE:src/platform-library/stm32f0xx/helpers.cpp>
         $<INSTALL_INTERFACE:src/platform-library/stm32f0xx/boot/boot-discrete-io.cpp>
         $<INSTALL_INTERFACE:src/platform-library/stm32f0xx/boot/boot-system-clock.cpp>
