@@ -13,7 +13,6 @@
 #include "platform-library/stm32f0xx/discrete-output.hpp"
 #include "platform-library/stm32f0xx/serial-device-uart-dma.hpp"
 #include "platform-library/stm32f0xx/serial-device-i2c.hpp"
-#include "platform-library/stm32f0xx/serial-device-spi.hpp"
 #include "platform-library/stm32f0xx/system-clock.hpp"
 
 
@@ -94,24 +93,6 @@ void boot(SerialDevice_UART_DMA& serial,
 /// @param clock        the system clock
 ///
 void boot(SerialDevice_I2C&  serial, I2CDevID i2c_id, bte::ISystemClock& clock);
-
-///
-/// Boots and configures an i2c serial device, tying it to the given
-/// spi
-///
-/// @param serial       the spi device
-/// @param I2CDevID     the ID to get to the correct type
-/// @param clock        the system clock
-/// @param buffer_elements buffer type size
-/// @param dma_buffer       buffer
-/// @param copy_buffer      used to double buffer input
-///
-void boot(SerialDevice_SPI_S&  serial, 
-        SPIDevID spi_id, 
-        bte::ISystemClock& clock,
-        int buffer_elements,
-        uint32_t *dma_buffer,
-        uint32_t *copy_buffer);
 
 ///
 /// Boots and configures the system clock
