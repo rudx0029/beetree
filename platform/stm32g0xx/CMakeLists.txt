@@ -81,13 +81,11 @@ target_sources(
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32g0xx/boot/boot-system-clock.cpp>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32g0xx/boot/boot-serial-device-uart-dma.cpp>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32g0xx/boot/boot-serial-device-i2c.cpp>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32g0xx/boot/boot-serial-device-spi.cpp>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32g0xx/boot/boot-pwm.cpp>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32g0xx/boot/boot-exti.cpp>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32g0xx/boot/boot-counter.cpp>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32g0xx/serial-device-uart-dma.cpp>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32g0xx/serial-device-i2c.cpp>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32g0xx/serial-device-spi.cpp>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32g0xx/i-serial-driver.cpp>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32g0xx/bno055-imu-device.cpp>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32g0xx/discrete-output.cpp>
@@ -111,7 +109,6 @@ target_sources(
         $<INSTALL_INTERFACE:src/platform-library/stm32g0xx/boot/boot-system-clock.cpp>
         $<INSTALL_INTERFACE:src/platform-library/stm32g0xx/boot/boot-serial-device-uart-dma.cpp>
         $<INSTALL_INTERFACE:src/platform-library/stm32g0xx/boot/boot-serial-device-i2c.cpp>
-        $<INSTALL_INTERFACE:src/platform-library/stm32g0xx/boot/boot-serial-device-spi.cpp>
         $<INSTALL_INTERFACE:src/platform-library/stm32g0xx/boot/boot-pwm.cpp>
         $<INSTALL_INTERFACE:src/platform-library/stm32g0xx/boot/boot-exti.cpp>
         $<INSTALL_INTERFACE:src/platform-library/stm32g0xx/boot/boot-counter.cpp>
