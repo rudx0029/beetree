@@ -13,6 +13,7 @@
 #include "platform-library/stm32g0xx/discrete-output.hpp"
 #include "platform-library/stm32g0xx/serial-device-uart-dma.hpp"
 #include "platform-library/stm32g0xx/serial-device-i2c.hpp"
+#include "platform-library/stm32g0xx/serial-device-spi.hpp"
 #include "platform-library/stm32g0xx/system-clock.hpp"
 
 namespace stm32g0xx {
@@ -81,7 +82,6 @@ void boot(SerialDevice_UART_DMA& serial,
           USARTDevID             usart_id,
           const SerialParams&    device_cfg,
           bte::ISystemClock&     clock);
-
 ///
 /// Boots and configures an i2c serial device, tying it to the given
 /// i2c
