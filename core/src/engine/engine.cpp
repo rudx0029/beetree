@@ -145,8 +145,8 @@ EngineResult Engine::step()
     // handle any exceptions
     if (m_rcvd_exception)
     {
-        optional<Exception> ex{nullopt};
-        bte::swap(m_rcvd_exception, ex);
+        std::optional<Exception> ex{std::nullopt};
+        std::swap(m_rcvd_exception, ex);
         handle_exception(ex.value());
     }
 

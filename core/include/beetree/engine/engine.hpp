@@ -6,7 +6,7 @@
 ///-----------------------------------------------------------------------------
 #pragma once
 
-#include "beetree/btos/optional.hpp"
+#include <optional>
 #include "beetree/engine/connections.hpp"
 #include "beetree/engine/context.hpp"
 #include "beetree/engine/exception.hpp"
@@ -59,7 +59,7 @@ private:
     {
     public:
         MetaNode() = default;
-        MetaNode(const Element& el, const Recipe& r, const optional<Exception>& ex)
+        MetaNode(const Element& el, const Recipe& r, const std::optional<Exception>& ex)
             : is_valid(true), recipe(r), context(*el.node, ex, el.data, el.len)
         {}
 
@@ -86,8 +86,8 @@ private:
     MetaNode pop();
 
     // > STATE FIELDS
-    optional<Exception> m_rcvd_exception{nullopt};
-    optional<Exception> m_cur_exception{nullopt};
+    std::optional<Exception> m_rcvd_exception{std::nullopt};
+    std::optional<Exception> m_cur_exception{std::nullopt};
     Stack               m_stack;
     MetaNode            m_cur_node;
     TreeStats           m_tree_stats;

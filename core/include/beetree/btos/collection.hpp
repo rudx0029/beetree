@@ -5,7 +5,6 @@
 #pragma once
 
 #include <cstdint>
-#include "beetree/btos/optional.hpp"
 
 namespace bte {
 

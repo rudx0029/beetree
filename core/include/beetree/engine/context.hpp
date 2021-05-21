@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "beetree/btos/optional.hpp"
+#include <optional>
 #include "beetree/engine/exception.hpp"
 #include "beetree/engine/node.hpp"
 
@@ -23,7 +23,7 @@ struct Context
 public:
     // > Constructors
     Context() = default;
-    Context(const Node& n, const optional<Exception>& ex, uint8_t* d, std::size_t l)
+    Context(const Node& n, const std::optional<Exception>& ex, uint8_t* d, std::size_t l)
         : m_node(&n), m_cur_exception(ex), m_data(d), m_len(l)
     {}
 
@@ -38,12 +38,12 @@ public:
     }
 
     /// @return if in a catch node, the tree's current exception.
-    optional<Exception> get_cur_exception() const { return m_cur_exception; }
+    std::optional<Exception> get_cur_exception() const { return m_cur_exception; }
 
 private:
     friend class Builder;
     const Node*         m_node = nullptr;
-    optional<Exception> m_cur_exception{nullopt};
+    std::optional<Exception> m_cur_exception{std::nullopt};
     uint8_t*            m_data = nullptr;
     std::size_t         m_len  = 0;
 };

@@ -61,7 +61,7 @@ private:
     bte::Node                     m_node;    ///< the node under test
     bte::Recipe                   m_recipe;  ///<
     bte::Context                  m_context;
-    bte::optional<bte::Exception> m_exception{bte::nullopt};
+    std::optional<bte::Exception> m_exception{std::nullopt};
 };
 }  // namespace test
 }  // namespace bte

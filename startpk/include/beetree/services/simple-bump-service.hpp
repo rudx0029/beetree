@@ -6,7 +6,6 @@
 //------------------------------------------------------------------------------
 #pragma once
 
-#include "beetree/btos/optional.hpp"
 #include "beetree/models/bump-model.hpp"
 #include "beetree/services/i-bumper-service.hpp"
 
