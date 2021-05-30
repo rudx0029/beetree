@@ -60,6 +60,7 @@ add_test(NAME test-beetree-engine COMMAND test-beetree-engine)
 # btos tests
 add_executable(test-beetree-btos
     btos/test-stack.cpp
+    btos/test-array-ref.cpp
 )
 target_link_libraries(test-beetree-btos
     PRIVATE
