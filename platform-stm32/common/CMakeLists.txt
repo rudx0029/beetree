@@ -9,12 +9,12 @@ STM32 common library providing common methods for all stm architectures
 Packages
 --------
 
-``Beetree::Platform::STM32``
+``Beetree::Platform::stm32``
     Platform Library package for stm32f0xx series processors
 
 #]=======================================================================]
 add_library(beetree-platform-stm32 STATIC)
-add_library(Beetree::Platform::STM32 ALIAS beetree-platform-stm32)
+add_library(Beetree::Platform::stm32 ALIAS beetree-platform-stm32)
 
 # Sources
 # -------

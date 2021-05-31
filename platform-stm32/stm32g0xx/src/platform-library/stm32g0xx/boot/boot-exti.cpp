@@ -5,12 +5,12 @@
 // file 'LICENSE', which is part of this source code package.
 //------------------------------------------------------------------------------
 
-#include "platform-library/stm32g0xx/hal/stm32g0xx_ll_system.h"
-#include "platform-library/stm32g0xx/hal/stm32g0xx_ll_gpio.h"
-#include "platform-library/stm32g0xx/hal/stm32g0xx_ll_exti.h"
-#include "platform-library/stm32g0xx/boot.hpp"
-#include "platform-library/stm32g0xx/helpers.hpp"
-#include "platform-library/stm32g0xx/counter.hpp"
+#include "beetree/platform/stm32g0xx/hal/stm32g0xx_ll_system.h"
+#include "beetree/platform/stm32g0xx/hal/stm32g0xx_ll_gpio.h"
+#include "beetree/platform/stm32g0xx/hal/stm32g0xx_ll_exti.h"
+#include "beetree/platform/stm32g0xx/boot.hpp"
+#include "beetree/platform/stm32g0xx/helpers.hpp"
+#include "beetree/platform/stm32g0xx/counter.hpp"
 
 
 namespace stm32g0xx {

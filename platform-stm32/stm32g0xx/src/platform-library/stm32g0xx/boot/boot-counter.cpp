@@ -6,8 +6,8 @@
 //------------------------------------------------------------------------------
 #include "../hal/stm32g0xx_ll_gpio.h"
 #include "../hal/stm32g0xx_ll_tim.h"
-#include "platform-library/stm32g0xx/boot.hpp"
-#include "platform-library/stm32g0xx/helpers.hpp"
+#include "beetree/platform/stm32g0xx/boot.hpp"
+#include "beetree/platform/stm32g0xx/helpers.hpp"
 
 namespace stm32g0xx {
 

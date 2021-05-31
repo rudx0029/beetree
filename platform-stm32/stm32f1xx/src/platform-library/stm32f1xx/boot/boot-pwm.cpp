@@ -7,8 +7,8 @@
 
 #include "../hal/stm32f1xx_ll_gpio.h"
 #include "../hal/stm32f1xx_ll_tim.h"
-#include "platform-library/stm32f1xx/boot.hpp"
-#include "platform-library/stm32f1xx/helpers.hpp"
+#include "beetree/platform/stm32f1xx/boot.hpp"
+#include "beetree/platform/stm32f1xx/helpers.hpp"
 
 uint32_t t = 0;
 

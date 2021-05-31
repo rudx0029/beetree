@@ -7,7 +7,7 @@
 /// @file
 ///-----------------------------------------------------------------------------
 
-#include "platform-library/stm32f1xx/system-clock.hpp"
+#include "beetree/platform/stm32f1xx/system-clock.hpp"
 #include <limits>
 
 namespace stm32f1xx {

@@ -5,8 +5,8 @@
 // file 'LICENSE', which is part of this source code package.
 //------------------------------------------------------------------------------
 
-#include "platform-library/stm32f1xx/counter.hpp"
-#include "platform-library/stm32f1xx/hal/stm32f1xx_ll_gpio.h"
+#include "beetree/platform/stm32f1xx/counter.hpp"
+#include "beetree/platform/stm32f1xx/hal/stm32f1xx_ll_gpio.h"
 
 // gdb
 uint32_t lw = 0, rw = 0;

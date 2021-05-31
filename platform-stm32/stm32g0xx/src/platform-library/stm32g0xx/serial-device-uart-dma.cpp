@@ -7,10 +7,10 @@
 /// @file
 ///-----------------------------------------------------------------------------
 
-#include "platform-library/stm32g0xx/serial-device-uart-dma.hpp"
-#include "platform-library/stm32g0xx/hal/stm32g0xx_ll_dma.h"
-#include "platform-library/stm32g0xx/hal/stm32g0xx_ll_usart.h"
-#include "platform-library/stm32g0xx/helpers.hpp"
+#include "beetree/platform/stm32g0xx/serial-device-uart-dma.hpp"
+#include "beetree/platform/stm32g0xx/hal/stm32g0xx_ll_dma.h"
+#include "beetree/platform/stm32g0xx/hal/stm32g0xx_ll_usart.h"
+#include "beetree/platform/stm32g0xx/helpers.hpp"
 
 namespace stm32g0xx {
 void enable_transfer(USART_TypeDef* usart, const usart::DmaInfo& dma_info)

@@ -12,8 +12,7 @@ Packages
 
 Dependencies
 ------------
-
-``PlatformLibrary::Core``
+``Beetree::Platform``
 ``Threads::Threads``
 #]=======================================================================]
 
@@ -35,7 +34,7 @@ add_library(PlatformLibrary::Host ALIAS platform-library-host)
 target_link_libraries(
     platform-library-host
     PUBLIC Beetree::Platform
-    PRIVATE PlatformLibrary::Core Threads::Threads
+    PRIVATE Threads::Threads
 )
 target_include_directories(
     platform-library-host

@@ -7,7 +7,7 @@
 /// @file 'C' implementation of a Ring 'Q'
 ///-----------------------------------------------------------------------------
 
-#include "platform-library/ring-q.h"
+#include "beetree/platform/ring-q.h"
 
 EXTERN_C_BEG
 

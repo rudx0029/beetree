@@ -5,7 +5,7 @@
 // file 'LICENSE', which is part of this source code package.
 //------------------------------------------------------------------------------
 
-#include "platform-library/stm32f1xx/pwm.hpp"
+#include "beetree/platform/stm32f1xx/pwm.hpp"
 #include "hal/stm32f1xx_ll_tim.h"
 
 uint32_t pwmlw = 0;

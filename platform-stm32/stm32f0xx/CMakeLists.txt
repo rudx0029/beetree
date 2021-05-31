@@ -7,13 +7,13 @@ Platform Library for STM32F0XX
 Packages
 --------
 
-``PlatformLibrary::Stm32f0xx``
+``Beetree::Platform::stm32f0xx``
     Platform Library package for stm32f0xx series processors
 
 Dependencies
 ------------
 
-``PlatformLibrary::Core``
+``Beetree::Platform::stm32``
 
 .. note: The extensive directory structure is in order to expose the vendor's bsp
 #]=======================================================================]
@@ -33,36 +33,36 @@ set(CMAKE_CXX_EXTENSIONS ON)
 # Create an interface library for the stm32f0xx platforms
 # This allows the client to consume the source and apply
 # their compile definitions, linker options.
-add_library(platform-library-stm32f0xx INTERFACE)
-add_library(PlatformLibrary::Stm32f0xx ALIAS platform-library-stm32f0xx)
+add_library(beetree-platform-stm32f0xx INTERFACE)
+add_library(Beetree::Platform::stm32f0xx ALIAS beetree-platform-stm32f0xx)
 
 # Dependencies
 # ------------
-# target_include_directories(platform-library-stm32f0xx INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>)
-# target_include_directories(platform-library-stm32f0xx INTERFACE $<INSTALL_INTERFACE:src>)
-target_link_libraries(platform-library-stm32f0xx INTERFACE PlatformLibrary::Core)
+# target_include_directories(beetree-platform-stm32f0xx INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>)
+# target_include_directories(beetree-platform-stm32f0xx INTERFACE $<INSTALL_INTERFACE:src>)
+target_link_libraries(beetree-platform-stm32f0xx INTERFACE Beetree::Platform::stm32)
 target_include_directories(
-    platform-library-stm32f0xx
+    beetree-platform-stm32f0xx
     INTERFACE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>
         # expose the vendor's bsp
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32f0xx/hal>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32f0xx/hal/Legacy>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32f0xx/system>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32f0xx/cmsis>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/hal>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/hal/Legacy>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/system>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/cmsis>
         $<INSTALL_INTERFACE:src>
-        $<INSTALL_INTERFACE:src/platform-library/stm32f0xx/hal>
-        $<INSTALL_INTERFACE:src/platform-library/stm32f0xx/hal/Legacy>
-        $<INSTALL_INTERFACE:src/platform-library/stm32f0xx/system>
-        $<INSTALL_INTERFACE:src/platform-library/stm32f0xx/cmsis>
+        $<INSTALL_INTERFACE:src/hal>
+        $<INSTALL_INTERFACE:src/hal/Legacy>
+        $<INSTALL_INTERFACE:src/system>
+        $<INSTALL_INTERFACE:src/cmsis>
 )
 
 # Source
 # ------
 target_sources(
-    platform-library-stm32f0xx
+    beetree-platform-stm32f0xx
     INTERFACE
         # build specs
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/platform-library/stm32f0xx/system/system_stm32f0xx.c>
@@ -126,7 +126,7 @@ target_sources(
 # Install
 # -------
 install(
-    TARGETS platform-library-stm32f0xx
+    TARGETS beetree-platform-stm32f0xx
     COMPONENT Development
     EXPORT Beetree
 )

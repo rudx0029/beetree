@@ -7,12 +7,12 @@
 /// @file
 ///-----------------------------------------------------------------------------
 
-#include "platform-library/stm32f1xx/helpers.hpp"
-#include "platform-library/stm32f1xx/hal/stm32f1xx_ll_bus.h"
-#include "platform-library/stm32f1xx/hal/stm32f1xx_ll_dma.h"
-#include "platform-library/stm32f1xx/hal/stm32f1xx_ll_gpio.h"
-#include "platform-library/stm32f1xx/hal/stm32f1xx_ll_usart.h"
-#include "platform-library/stm32f1xx/system/stm32f1xx.h"
+#include "beetree/platform/stm32f1xx/helpers.hpp"
+#include "beetree/platform/stm32f1xx/hal/stm32f1xx_ll_bus.h"
+#include "beetree/platform/stm32f1xx/hal/stm32f1xx_ll_dma.h"
+#include "beetree/platform/stm32f1xx/hal/stm32f1xx_ll_gpio.h"
+#include "beetree/platform/stm32f1xx/hal/stm32f1xx_ll_usart.h"
+#include "beetree/platform/stm32f1xx/system/stm32f1xx.h"
 
 namespace stm32f1xx
 {

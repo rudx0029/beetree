@@ -7,9 +7,9 @@
 
 #include "../hal/stm32f1xx_ll_exti.h"
 #include "../hal/stm32f1xx_ll_gpio.h"
-#include "platform-library/stm32f1xx/boot.hpp"
-#include "platform-library/stm32f1xx/counter.hpp"
-#include "platform-library/stm32f1xx/helpers.hpp"
+#include "beetree/platform/stm32f1xx/boot.hpp"
+#include "beetree/platform/stm32f1xx/counter.hpp"
+#include "beetree/platform/stm32f1xx/helpers.hpp"
 
 namespace stm32f1xx {
 

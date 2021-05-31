@@ -5,7 +5,7 @@
 // file 'LICENSE', which is part of this source code package.
 //------------------------------------------------------------------------------
 
-#include "platform-library/stm32g0xx/counter.hpp"
+#include "beetree/platform/stm32g0xx/counter.hpp"
 #include "hal/stm32g0xx_ll_exti.h"
 #include "hal/stm32g0xx_ll_gpio.h"
 #include "hal/stm32g0xx_ll_tim.h"

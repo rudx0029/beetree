@@ -5,7 +5,7 @@
 // file 'LICENSE', which is part of this source code package.
 //------------------------------------------------------------------------------
 
-#include "platform-library/stm32g0xx/pwm.hpp"
+#include "beetree/platform/stm32g0xx/pwm.hpp"
 #include "hal/stm32g0xx_ll_tim.h"
 
 namespace stm32g0xx {

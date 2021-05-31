@@ -4,7 +4,7 @@
 // This file is subject to the terms and conditions defined in the
 // file 'LICENSE', which is part of this source code package.
 //------------------------------------------------------------------------------
-#include "platform-library/stm32g0xx/bno055-imu-device.hpp"
+#include "beetree/platform/stm32g0xx/bno055-imu-device.hpp"
 
 namespace stm32g0xx {
 

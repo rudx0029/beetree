@@ -7,9 +7,9 @@
 /// @file
 ///-----------------------------------------------------------------------------
 
-#include "platform-library/stm32g0xx/serial-device-i2c.hpp"
-#include "platform-library/stm32g0xx/helpers.hpp"
-#include "platform-library/stm32g0xx/hal/stm32g0xx_ll_i2c.h"
+#include "beetree/platform/stm32g0xx/serial-device-i2c.hpp"
+#include "beetree/platform/stm32g0xx/helpers.hpp"
+#include "beetree/platform/stm32g0xx/hal/stm32g0xx_ll_i2c.h"
 
 
 namespace stm32g0xx

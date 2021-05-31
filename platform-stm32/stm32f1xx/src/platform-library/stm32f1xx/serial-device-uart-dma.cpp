@@ -7,10 +7,10 @@
 /// @file
 ///-----------------------------------------------------------------------------
 
-#include "platform-library/stm32f1xx/serial-device-uart-dma.hpp"
-#include "platform-library/stm32f1xx/hal/stm32f1xx_ll_dma.h"
-#include "platform-library/stm32f1xx/hal/stm32f1xx_ll_usart.h"
-#include "platform-library/stm32f1xx/helpers.hpp"
+#include "beetree/platform/stm32f1xx/serial-device-uart-dma.hpp"
+#include "beetree/platform/stm32f1xx/hal/stm32f1xx_ll_dma.h"
+#include "beetree/platform/stm32f1xx/hal/stm32f1xx_ll_usart.h"
+#include "beetree/platform/stm32f1xx/helpers.hpp"
 
 namespace stm32f1xx {
 using duration_ms  = bte::chrono::duration_ms;

@@ -6,11 +6,11 @@
 ///
 /// @file System Clock boot for stm32f1xx devices
 ///-----------------------------------------------------------------------------
-#include "platform-library/stm32f1xx/boot.hpp"
-#include "platform-library/stm32f1xx/hal/stm32f1xx_ll_cortex.h"
-#include "platform-library/stm32f1xx/hal/stm32f1xx_ll_rcc.h"
-#include "platform-library/stm32f1xx/hal/stm32f1xx_ll_system.h"
-#include "platform-library/stm32f1xx/hal/stm32f1xx_ll_utils.h"
+#include "beetree/platform/stm32f1xx/boot.hpp"
+#include "beetree/platform/stm32f1xx/hal/stm32f1xx_ll_cortex.h"
+#include "beetree/platform/stm32f1xx/hal/stm32f1xx_ll_rcc.h"
+#include "beetree/platform/stm32f1xx/hal/stm32f1xx_ll_system.h"
+#include "beetree/platform/stm32f1xx/hal/stm32f1xx_ll_utils.h"
 
 namespace stm32f1xx
 {

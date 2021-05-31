@@ -7,9 +7,9 @@
 /// @file
 ///-----------------------------------------------------------------------------
 
-#include "platform-library/stm32g0xx/discrete-output.hpp"
-#include "platform-library/stm32g0xx/hal/stm32g0xx_ll_gpio.h"
-#include "platform-library/stm32g0xx/helpers.hpp"
+#include "beetree/platform/stm32g0xx/discrete-output.hpp"
+#include "beetree/platform/stm32g0xx/hal/stm32g0xx_ll_gpio.h"
+#include "beetree/platform/stm32g0xx/helpers.hpp"
 
 namespace stm32g0xx
 {

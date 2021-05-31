@@ -4,7 +4,7 @@
 // This file is subject to the terms and conditions defined in the
 // file 'LICENSE', which is part of this source code package.
 //------------------------------------------------------------------------------
-#include "platform-library/stm32g0xx/i-serial-driver.hpp"
+#include "beetree/platform/stm32g0xx/i-serial-driver.hpp"
 
 namespace stm32g0xx {
 
