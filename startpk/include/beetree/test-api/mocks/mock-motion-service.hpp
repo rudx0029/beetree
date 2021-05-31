@@ -7,7 +7,7 @@
 #pragma once
 
 #include "beetree/services/i-motion-service.hpp"
-#include "beetree/test/gtest-ns.hpp"
+#include "beetree/test-api/gtest-ns.hpp"
 
 namespace bte {
 namespace test {

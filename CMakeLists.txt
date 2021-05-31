@@ -52,5 +52,4 @@ add_subdirectory(tools/beeview)
 
 if(BUILD_TESTING)
     message(STATUS "[BeeTree] Configuring unit tests")
-    add_subdirectory(startpk-test-api)
 endif()
