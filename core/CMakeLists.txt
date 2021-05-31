@@ -95,7 +95,7 @@ target_sources(
 
 # Dependencies
 # ------------
-target_link_libraries(beetree PUBLIC Beetree::Platform::Interface)
+target_link_libraries(beetree PUBLIC Beetree::Platform)
 # build include dirs
 target_include_directories(beetree PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
 # install/packaging include dirs

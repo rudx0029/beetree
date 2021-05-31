@@ -34,7 +34,7 @@ add_library(PlatformLibrary::Host ALIAS platform-library-host)
 # ------------
 target_link_libraries(
     platform-library-host
-    PUBLIC Beetree::Platform::Interface
+    PUBLIC Beetree::Platform
     PRIVATE PlatformLibrary::Core Threads::Threads
 )
 target_include_directories(
