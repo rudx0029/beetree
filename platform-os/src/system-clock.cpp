@@ -6,7 +6,7 @@
 //------------------------------------------------------------------------------
 #include <chrono>
 #include <limits>
-#include "beetree/platform/host/system-clock.hpp"
+#include "beetree/platform/system-clock.hpp"
 
 namespace host {
 namespace {

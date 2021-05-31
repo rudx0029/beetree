@@ -1,13 +1,13 @@
 #[=======================================================================[.rst:
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Platform Library for Host
+Generic OS Platform Library 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Packages
 --------
 
-``PlatformLibrary::Host``
+``Beetree::Platform::OS``
     Platform Library package for your host system
 
 Dependencies
@@ -26,26 +26,26 @@ endif()
 find_package(Threads)
 
 # Create a static library for the host system
-add_library(platform-library-host STATIC)
-add_library(PlatformLibrary::Host ALIAS platform-library-host)
+add_library(beetree-platform-os STATIC)
+add_library(Beetree::Platform::OS ALIAS beetree-platform-os)
 
 # Dependencies
 # ------------
 target_link_libraries(
-    platform-library-host
+    beetree-platform-os
     PUBLIC Beetree::Platform
     PRIVATE Threads::Threads
 )
 target_include_directories(
-    platform-library-host
+    beetree-platform-os
     PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include> $<INSTALL_INTERFACE:include>
 )
 
 # Source
 # ------
-target_sources(platform-library-host PRIVATE src/system-clock.cpp src/udp-send.cpp src/udp-receive.cpp)
+target_sources(beetree-platform-os PRIVATE src/system-clock.cpp src/udp-send.cpp src/udp-receive.cpp)
 
 # Install
 # -------
-install(TARGETS platform-library-host COMPONENT Development EXPORT Beetree)
+install(TARGETS beetree-platform-os COMPONENT Development EXPORT Beetree)
 install(DIRECTORY include/ TYPE INCLUDE COMPONENT Development)
