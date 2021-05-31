@@ -5,9 +5,9 @@
 // file 'LICENSE', which is part of this source code package.
 //------------------------------------------------------------------------------
 
-#include "beetree/test/behavior-reqs.hpp"
-#include "beetree/test/gtest-ns.hpp"
-#include "beetree/test/matchers/unit.hpp"
+#include "beetree/test-api/behavior-reqs.hpp"
+#include "beetree/test-api/gtest-ns.hpp"
+#include "beetree/test-api/matchers/unit.hpp"
 #include "beetree/units/methods.hpp"
 
 using namespace bte;

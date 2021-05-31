@@ -7,11 +7,11 @@
 #include "beetree/engine/connections.hpp"
 #include "beetree/engine/engine.hpp"
 #include "beetree/engine/port.hpp"
-#include "beetree/test/behavior-reqs.hpp"
-#include "beetree/test/gtest-ns.hpp"
-#include "beetree/test/matchers/node.hpp"
-#include "beetree/test/mocks/mock-node.hpp"
-#include "beetree/test/mocks/platform-mock.hpp"
+#include "beetree/test-api/behavior-reqs.hpp"
+#include "beetree/test-api/gtest-ns.hpp"
+#include "beetree/test-api/matchers/node.hpp"
+#include "beetree/test-api/mocks/mock-node.hpp"
+#include "beetree/test-api/mocks/platform-mock.hpp"
 
 using namespace bte;
 using namespace bte::test;

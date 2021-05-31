@@ -1,6 +1,6 @@
 #include "beetree/nodes/select.hpp"
-#include "beetree/test/behavior-reqs.hpp"
-#include "beetree/test/fakes/test-node.hpp"
+#include "beetree/test-api/behavior-reqs.hpp"
+#include "beetree/test-api/fakes/test-node.hpp"
 
 using namespace bte;
 using gtest::Eq;

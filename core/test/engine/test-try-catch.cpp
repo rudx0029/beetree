@@ -1,8 +1,8 @@
 
 #include "beetree/engine/try-catch.hpp"
-#include "beetree/test/behavior-reqs.hpp"
-#include "beetree/test/fakes/test-node.hpp"
-#include "beetree/test/gtest-ns.hpp"
+#include "beetree/test-api/behavior-reqs.hpp"
+#include "beetree/test-api/fakes/test-node.hpp"
+#include "beetree/test-api/gtest-ns.hpp"
 
 using namespace bte;
 using gtest::Eq;

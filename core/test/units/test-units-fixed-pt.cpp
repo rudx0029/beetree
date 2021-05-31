@@ -3,8 +3,8 @@
 // file 'LICENSE', which is part of this source code package.
 //------------------------------------------------------------------------------
 #include <cmath>
-#include "beetree/test/behavior-reqs.hpp"
-#include "beetree/test/gtest-ns.hpp"
+#include "beetree/test-api/behavior-reqs.hpp"
+#include "beetree/test-api/gtest-ns.hpp"
 #include "beetree/units/internal/fixed-pt.hpp"
 #include "fibonochi.hpp"
 

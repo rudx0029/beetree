@@ -1,6 +1,6 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
-#include "beetree/test/behavior-reqs.hpp"
+#include "beetree/test-api/behavior-reqs.hpp"
 
 #include <map>
 #include "beetree/registry/register-bank.hpp"

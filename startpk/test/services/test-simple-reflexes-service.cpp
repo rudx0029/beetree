@@ -7,9 +7,9 @@
 #include "beetree/btos/flags.hpp"
 #include "beetree/models/data/reflex.hpp"
 #include "beetree/services/simple-reflexes-service.hpp"
-#include "beetree/test/behavior-reqs.hpp"
-#include "beetree/test/gtest-ns.hpp"
-#include "beetree/test/matchers/flag.hpp"
+#include "beetree/test-api/behavior-reqs.hpp"
+#include "beetree/test-api/gtest-ns.hpp"
+#include "beetree/test-api/matchers/flag.hpp"
 
 using namespace bte;
 using gtest::NiceMock;

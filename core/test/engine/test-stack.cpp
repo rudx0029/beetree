@@ -10,8 +10,8 @@
 #include "beetree/engine/node.hpp"
 #include "beetree/engine/recipe.hpp"
 #include "beetree/engine/stack.hpp"
-#include "beetree/test/behavior-reqs.hpp"
-#include "beetree/test/gtest-ns.hpp"
+#include "beetree/test-api/behavior-reqs.hpp"
+#include "beetree/test-api/gtest-ns.hpp"
 
 #include <array>
 #include <ios>

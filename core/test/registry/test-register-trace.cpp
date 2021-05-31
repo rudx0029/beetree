@@ -7,9 +7,9 @@
 
 #include "beetree/core/tokens.hpp"
 #include "beetree/registry/register-trace.hpp"
-#include "beetree/test/behavior-reqs.hpp"
-#include "beetree/test/gtest-ns.hpp"
-#include "beetree/test/matchers/trace-package.hpp"
+#include "beetree/test-api/behavior-reqs.hpp"
+#include "beetree/test-api/gtest-ns.hpp"
+#include "beetree/test-api/matchers/trace-package.hpp"
 
 using namespace bte;
 

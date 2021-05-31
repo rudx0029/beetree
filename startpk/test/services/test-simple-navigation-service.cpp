@@ -6,10 +6,10 @@
 //------------------------------------------------------------------------------
 
 #include "beetree/services/simple-navigation-service.hpp"
-#include "beetree/test/behavior-reqs.hpp"
-#include "beetree/test/matchers/pose.hpp"
-#include "beetree/test/matchers/unit.hpp"
-#include "beetree/test/mocks/platform-mock.hpp"
+#include "beetree/test-api/behavior-reqs.hpp"
+#include "beetree/test-api/matchers/pose.hpp"
+#include "beetree/test-api/matchers/unit.hpp"
+#include "beetree/test-api/mocks/platform-mock.hpp"
 
 #include "fakes/fake-motion-service.hpp"
 

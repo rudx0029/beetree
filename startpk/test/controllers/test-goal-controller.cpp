@@ -1,6 +1,6 @@
 #include "beetree/controllers/goal-controller.hpp"
-#include "beetree/test/behavior-reqs.hpp"
-#include "beetree/test/matchers/unit.hpp"
+#include "beetree/test-api/behavior-reqs.hpp"
+#include "beetree/test-api/matchers/unit.hpp"
 
 using namespace bte;
 using namespace bte::units;

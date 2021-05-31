@@ -10,8 +10,8 @@
 #include "beetree/engine/context.hpp"
 #include "beetree/engine/recipe.hpp"
 #include "beetree/nodes/repeat-until.hpp"
-#include "beetree/test/behavior-reqs.hpp"
-#include "beetree/test/fakes/test-node.hpp"
+#include "beetree/test-api/behavior-reqs.hpp"
+#include "beetree/test-api/fakes/test-node.hpp"
 
 using namespace bte;
 using gtest::Eq;

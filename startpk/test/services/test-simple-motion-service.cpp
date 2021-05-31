@@ -5,9 +5,9 @@
 // file 'LICENSE', which is part of this source code package.
 //------------------------------------------------------------------------------
 #include "beetree/services/simple-motion-service.hpp"
-#include "beetree/test/behavior-reqs.hpp"
-#include "beetree/test/gtest-ns.hpp"
-#include "beetree/test/matchers/motion-profile.hpp"
+#include "beetree/test-api/behavior-reqs.hpp"
+#include "beetree/test-api/gtest-ns.hpp"
+#include "beetree/test-api/matchers/motion-profile.hpp"
 
 using namespace bte;
 using namespace units::literals;

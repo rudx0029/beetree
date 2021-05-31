@@ -1,6 +1,6 @@
 #include <cmath>
-#include "beetree/test/behavior-reqs.hpp"
-#include "beetree/test/gtest-ns.hpp"
+#include "beetree/test-api/behavior-reqs.hpp"
+#include "beetree/test-api/gtest-ns.hpp"
 #include "beetree/units/internal/real.hpp"
 
 using bte::gtest::FloatNear;

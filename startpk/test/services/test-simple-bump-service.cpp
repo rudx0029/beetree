@@ -6,11 +6,11 @@
 //------------------------------------------------------------------------------
 
 #include "beetree/services/simple-bump-service.hpp"
-#include "beetree/test/behavior-reqs.hpp"
-#include "beetree/test/matchers/pose.hpp"
-#include "beetree/test/matchers/time.hpp"
-#include "beetree/test/matchers/unit.hpp"
-#include "beetree/test/mocks/platform-mock.hpp"
+#include "beetree/test-api/behavior-reqs.hpp"
+#include "beetree/test-api/matchers/pose.hpp"
+#include "beetree/test-api/matchers/time.hpp"
+#include "beetree/test-api/matchers/unit.hpp"
+#include "beetree/test-api/mocks/platform-mock.hpp"
 
 using namespace bte;
 using namespace units::literals;

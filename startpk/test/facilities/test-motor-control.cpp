@@ -1,5 +1,5 @@
 #include "beetree/facilities/filters/motor-control-filter-zero.hpp"
-#include "beetree/test/behavior-reqs.hpp"
+#include "beetree/test-api/behavior-reqs.hpp"
 
 using namespace bte;
 using namespace bte::units;
