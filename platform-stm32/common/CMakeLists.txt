@@ -13,21 +13,14 @@ Packages
     Platform Library package for stm32f0xx series processors
 
 #]=======================================================================]
-add_library(beetree-platform-stm32 STATIC)
+add_library(beetree-platform-stm32 INTERFACE)
 add_library(Beetree::Platform::stm32 ALIAS beetree-platform-stm32)
-
-# Sources
-# -------
-target_sources(
-    beetree-platform-stm32
-    PRIVATE src/ring-q.c
-)
 
 # Dependencies
 # ------------
 target_include_directories(
     beetree-platform-stm32
-    PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include> $<INSTALL_INTERFACE:include>
+    INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include> $<INSTALL_INTERFACE:include>
 )
 
 # Install

@@ -105,8 +105,8 @@ private:
     uint8_t m_tx_dma_buff[DMA_BUFF_LEN];
     uint8_t m_rx_dma_buff[DMA_BUFF_LEN];
 
-    platform::RingQContainer<BUFF_LEN> m_rx_q;
-    platform::RingQContainer<BUFF_LEN> m_tx_q;
+    bte::RingQContainer<BUFF_LEN> m_rx_q;
+    bte::RingQContainer<BUFF_LEN> m_tx_q;
 
     bte::ISystemClock* m_clock;
     USARTDevID         m_usart;

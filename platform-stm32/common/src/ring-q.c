@@ -9,9 +9,11 @@
 
 #include "beetree/platform/ring-q.h"
 
-EXTERN_C_BEG
+#if defined(__cplusplus)
+extern "C" {
+#endif
 
-void ringq_init(uint8_t* buff, size_t len, RingQ_t* q)
+void bte_ringq_init(uint8_t* buff, size_t len, RingQ_t* q)
 {
     q->buff = buff;
     q->len = len;
@@ -19,7 +21,7 @@ void ringq_init(uint8_t* buff, size_t len, RingQ_t* q)
     q->count = 0;
 };
 
-uint8_t ringq_pop(RingQ_t* q)
+uint8_t bte_ringq_pop(RingQ_t* q)
 {
     // get the value
     uint8_t value = q->buff[q->head];
@@ -28,7 +30,7 @@ uint8_t ringq_pop(RingQ_t* q)
     q->count--;
     return value;
 }
-void ringq_push(RingQ_t* q, uint8_t byte)
+void bte_ringq_push(RingQ_t* q, uint8_t byte)
 {
     // store the value
     size_t idx = (q->head + q->count) % q->len;
@@ -36,4 +38,6 @@ void ringq_push(RingQ_t* q, uint8_t byte)
     q->count++;
 }
 
-EXTERN_C_END
+#if defined(__cplusplus)
+} // extern "C"
+#endif

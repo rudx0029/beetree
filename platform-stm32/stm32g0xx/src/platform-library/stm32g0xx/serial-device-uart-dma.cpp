@@ -31,7 +31,7 @@ void disable_transfer(USART_TypeDef* usart, const usart::DmaInfo& dma_info)
 
 void start_transfer(USART_TypeDef*        usart,
                     const usart::DmaInfo& dma_info,
-                    platform::RingQ&      q,
+                    bte::RingQ&      q,
                     uint8_t*              buff,
                     std::size_t           len)
 {
@@ -83,7 +83,7 @@ void SerialDevice_UART_DMA::on_dma_interrupt()
 /// @return false a timeout occured while waiting for the q to free up
 /// space.
 ///
-bool wait_for_ready(platform::RingQ&          q,
+bool wait_for_ready(bte::RingQ&          q,
                     uint32_t                  nbytes,
                     bte::ISystemClock*        clock,
                     bte::chrono::timepoint_ms start,

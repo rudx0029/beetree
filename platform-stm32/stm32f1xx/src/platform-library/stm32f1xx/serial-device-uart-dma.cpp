@@ -15,7 +15,7 @@
 namespace stm32f1xx {
 using duration_ms  = bte::chrono::duration_ms;
 using timepoint_ms = bte::chrono::timepoint_ms;
-using RingQ        = platform::RingQ;
+using RingQ        = bte::RingQ;
 
 void enable_transfer(USART_TypeDef* usart, const usart::DmaInfo& dma_info)
 {
