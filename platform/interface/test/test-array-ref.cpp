@@ -11,7 +11,7 @@
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
-#include "beetree/btos/array-ref.hpp"
+#include "beetree/platform/basics/array-ref.hpp"
 
 static constexpr std::size_t N{8};
 static int fib_arr[N] = {1, 1, 2, 3, 5, 8, 13, 21};
