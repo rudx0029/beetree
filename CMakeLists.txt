@@ -44,10 +44,10 @@ install(
     COMPONENT Development
 )
 
-add_subdirectory(core)
+add_subdirectory(application/core)
+add_subdirectory(application/startpk)
+add_subdirectory(application/experimental)
 add_subdirectory(platform)
-add_subdirectory(startpk)
-add_subdirectory(experimental)
 add_subdirectory(tools/beeview)
 
 if(BUILD_TESTING)
