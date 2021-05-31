@@ -11,7 +11,7 @@
 #pragma once
 
 #include <utility>
-#include "beetree/platform/ring-q.h"
+#include "beetree/platform/basics/ring-q.h"
 
 namespace bte
 {

@@ -12,7 +12,7 @@
 #include <utility>
 #include "beetree/platform/i-serial-device.hpp"
 #include "beetree/platform/i-system-clock.hpp"
-#include "beetree/platform/ring-q.hpp"
+#include "beetree/platform/basics/ring-q.hpp"
 #include "beetree/platform/stm32f1xx/gpio-pin.hpp"
 #include "beetree/platform/stm32f1xx/serial-params.hpp"
 #include "beetree/platform/stm32f1xx/usart-dev-id.hpp"

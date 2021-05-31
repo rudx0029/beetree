@@ -13,7 +13,7 @@ Packages
 Dependencies
 ------------
 
-``Beetree::Platform::stm32``
+``Beetree::Platform``
 
 .. note: The extensive directory structure is in order to expose the vendor's bsp
 #]=======================================================================]
@@ -40,7 +40,7 @@ add_library(Beetree::Platform::stm32g0xx ALIAS beetree-platform-stm32g0xx)
 # ------------
 # target_include_directories(beetree-platform-stm32g0xx INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>)
 # target_include_directories(beetree-platform-stm32g0xx INTERFACE $<INSTALL_INTERFACE:src>)
-target_link_libraries(beetree-platform-stm32g0xx INTERFACE Beetree::Platform::stm32)
+target_link_libraries(beetree-platform-stm32g0xx INTERFACE Beetree::Platform)
 target_include_directories(
     beetree-platform-stm32g0xx
     INTERFACE
