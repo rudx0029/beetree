@@ -4,34 +4,33 @@
 Platform Library
 ^^^^^^^^^^^^^^^^
 
-Core library providing common methods for all platforms. Platforms libraries
-specific to a architecture should link to this library.
+STM32 common library providing common methods for all stm architectures
 
 Packages
 --------
 
-``PlatformLibrary::Core``
+``Beetree::Platform::STM32``
     Platform Library package for stm32f0xx series processors
 
 #]=======================================================================]
-add_library(platform-library STATIC)
-add_library(PlatformLibrary::Core ALIAS platform-library)
+add_library(beetree-platform-stm32 STATIC)
+add_library(Beetree::Platform::STM32 ALIAS beetree-platform-stm32)
 
 # Sources
 # -------
 target_sources(
-    platform-library
+    beetree-platform-stm32
     PRIVATE src/ring-q.c
 )
 
 # Dependencies
 # ------------
 target_include_directories(
-    platform-library
+    beetree-platform-stm32
     PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include> $<INSTALL_INTERFACE:include>
 )
 
 # Install
 # -------
-install(TARGETS platform-library COMPONENT Development EXPORT Beetree)
+install(TARGETS beetree-platform-stm32 COMPONENT Development EXPORT Beetree)
 install(DIRECTORY include/ TYPE INCLUDE COMPONENT Development)

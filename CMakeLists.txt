@@ -48,6 +48,7 @@ add_subdirectory(application/core)
 add_subdirectory(application/startpk)
 add_subdirectory(application/experimental)
 add_subdirectory(platform)
+add_subdirectory(platform-stm32)
 add_subdirectory(tools/beeview)
 
 if(BUILD_TESTING)
