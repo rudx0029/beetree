@@ -150,7 +150,7 @@ if(BUILD_TESTING)
     install(
         TARGETS beetree-startpk-test-api
         EXPORT Beetree
-        PUBLIC_HEADER DESTINATION include COMPONENT Development
+        PUBLIC_HEADER DESTINATION include
     )
     add_subdirectory(test)
 endif()
@@ -159,16 +159,14 @@ endif()
 # -------
 install(
     TARGETS beetree-start-pack
-    COMPONENT Development
     EXPORT Beetree
 )
 install(
     DIRECTORY include/ ${CMAKE_CURRENT_BINARY_DIR}/include/
     TYPE INCLUDE
-    COMPONENT Development
 )
-install(
-    FILES ${CMAKE_CURRENT_BINARY_DIR}/beetree-start-pack-token-map.json
-    DESTINATION "share/beetree"
-    COMPONENT View
-)
+# install(
+#     FILES ${CMAKE_CURRENT_BINARY_DIR}/beetree-start-pack-token-map.json
+#     DESTINATION "share/beetree"
+#     COMPONENT View
+# )

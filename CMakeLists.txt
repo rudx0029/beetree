@@ -1,57 +1,90 @@
-cmake_minimum_required(VERSION 3.14)
-project(beetree C CXX ASM)
+cmake_minimum_required(VERSION 3.15)
+project(beetree-superbuild C CXX ASM)
 
-# Policies
-cmake_policy(SET CMP0076 NEW) # allow relative paths in target_sources
-cmake_policy(SET CMP0077 NEW) # gtest pthreads behavior
+option(STUDIOBEE_BUILD_TESTING "Enable configuring and building of Studio Bee unit tests" ON)
+option(STUDIOBEE_QUIET_BUILD "Disable build logging of Studio Bee targets" OFF)
 
-# Options
-# Change CMake's default value to enabled.
-option(BEETREE_BUILD_EXAMPLES "Enable configuring and building BeeTree example applications" OFF)
-option(BEETREE_BUILD_TESTING "Enable configuring and building BeeTree unit tests" ON)
-option(BEETREE_EXPORT_COMPILE_COMMANDS "Enable output of compile commands during generation." ON)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ${BEETREE_EXPORT_COMPILE_COMMANDS})
+include(ExternalProject)
 
-# CMake Module Path
-list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
-
-# C/C++ Standards
-set(CMAKE_C_STANDARD 11)
-set(CMAKE_C_STANDARD_REQUIRED ON)
-set(CMAKE_C_EXTENSIONS ON)
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS ON)
-
-# force debug build type if not specified
-# NOTE: This means that we will only support single configuration editors.
-if(NOT CMAKE_BUILD_TYPE)
-    message(STATUS "[BeeTree] Defaulting build type to Debug")
-    set(CMAKE_BUILD_TYPE "Debug")
+set(__studiobee_prefix ${CMAKE_CURRENT_BINARY_DIR}/studio-bee)
+set(__studiobee_build ${__studiobee_prefix}/build)
+if(STUDIOBEE_QUIET_BUILD)
+    set(__studiobee_log_build FALSE)
+else()
+    set(__studiobee_log_build TRUE)
 endif()
 
-if(BEETREE_BUILD_TESTING AND (CMAKE_SYSTEM_PROCESSOR STREQUAL CMAKE_HOST_SYSTEM_PROCESSOR))
-    message(STATUS "[BeeTree] Unit tests are enabled")
-    include(CTest)
-    include(FetchGTest)
-    enable_testing()
+if(STUDIOBEE_BUILD_TESTING)
+    ExternalProject_Add(
+        EP_GoogleTest
+        PREFIX ${__studiobee_prefix}/googletest
+        URL "${CMAKE_CURRENT_SOURCE_DIR}/application/thirdparty/googletest-release-1.10.0.tar.gz"
+        BINARY_DIR ${__studiobee_build}/googletest
+        CMAKE_ARGS -DCMAKE_INSTALL_PREFIX:PATH=${__studiobee_prefix}/googletest
+        LOG_BUILD ${__studiobee_log_build}
+        LOG_OUTPUT_ON_FAILURE TRUE
+        LOG_MERGED_STDOUTERR TRUE  
+    )
 endif()
 
-install(
-    EXPORT Beetree
-    NAMESPACE Beetree::
-    DESTINATION cmake
-    COMPONENT Development
+ExternalProject_Add(
+    EP_BeetreePlatform
+    PREFIX ${__studiobee_prefix}/beetree-platform
+    SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/platform
+    BINARY_DIR ${__studiobee_build}/beetree-platform
+    DOWNLOAD_COMMAND ""
+    UPDATE_COMMAND ""
+    CMAKE_CACHE_ARGS
+        -DCMAKE_TOOLCHAIN_FILE:STRING=${CMAKE_TOOLCHAIN_FILE}
+        -DCMAKE_INSTALL_PREFIX:STRING=${__studiobee_prefix}/beetree-platform
+        -DBEETREE_BUILD_TESTING:BOOL=${STUDIOBEE_BUILD_TESTING}
+        -DGTest_DIR:STRING=${__studiobee_prefix}/googletest/lib/cmake/GTest
+    LOG_BUILD ${__studiobee_log_build}
+    LOG_OUTPUT_ON_FAILURE TRUE
+    LOG_MERGED_STDOUTERR TRUE  
 )
+add_dependencies(EP_BeetreePlatform EP_GoogleTest)
 
-add_subdirectory(application/core)
-add_subdirectory(application/startpk)
-add_subdirectory(application/experimental)
-add_subdirectory(platform)
-add_subdirectory(platform-stm32)
-add_subdirectory(platform-os)
-add_subdirectory(tools/beeview)
+ExternalProject_Add(
+    EP_Beetree
+    PREFIX ${__studiobee_prefix}/beetree
+    SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/application
+    BINARY_DIR ${__studiobee_build}/beetree
+    DOWNLOAD_COMMAND ""
+    UPDATE_COMMAND ""
+    CMAKE_CACHE_ARGS
+        -DCMAKE_TOOLCHAIN_FILE:STRING=${CMAKE_TOOLCHAIN_FILE}
+        -DCMAKE_INSTALL_PREFIX:STRING=${__studiobee_prefix}/beetree
+        -DBEETREE_BUILD_TESTING:BOOL=${STUDIOBEE_BUILD_TESTING}
+        -DBeetreePlatform_DIR:STRING=${__studiobee_prefix}/beetree-platform/cmake
+        -DGTest_DIR:STRING=${__studiobee_prefix}/googletest/lib/cmake/GTest
+    LOG_BUILD ${__studiobee_log_build}
+    LOG_OUTPUT_ON_FAILURE TRUE
+    LOG_MERGED_STDOUTERR TRUE  
+)
+add_dependencies(EP_Beetree EP_BeetreePlatform EP_GoogleTest)
 
-if(BUILD_TESTING)
-    message(STATUS "[BeeTree] Configuring unit tests")
-endif()
+add_library(Beetree::Beetree STATIC IMPORTED)
+set_target_properties(
+    Beetree::Beetree
+    PROPERTIES IMPORTED_LOCATION ${__studiobee_prefix}/beetree/libbeetree.a
+               INTERFACE_INCLUDE_DIRECTORIES ${__studiobee_prefix}/beetree/include
+    LOG_BUILD TRUE
+)
+add_dependencies(Beetree::Beetree EP_Beetree)
+
+add_library(Beetree::StartPack STATIC IMPORTED)
+set_target_properties(
+    Beetree::StartPack
+    PROPERTIES IMPORTED_LOCATION ${__studiobee_prefix}/beetree/libbeetree-start-pack.a
+               INTERFACE_INCLUDE_DIRECTORIES ${__studiobee_prefix}/beetree/include
+)
+add_dependencies(Beetree::StartPack Beetree::Beetree)
+
+add_library(Beetree::TestAPI STATIC IMPORTED)
+set_target_properties(
+    Beetree::TestAPI
+    PROPERTIES IMPORTED_LOCATION ${__studiobee_prefix}/beetree/libbeetree-test-api.a
+               INTERFACE_INCLUDE_DIRECTORIES ${__studiobee_prefix}/beetree/include
+)
+add_dependencies(Beetree::TestAPI Beetree::Beetree)

@@ -20,23 +20,23 @@ find_package(BeeTreeTools REQUIRED)
 
 
 add_custom_command(
-    OUTPUT ${tokensPath}
-           ${tokensMapPath}
+    OUTPUT  ${CMAKE_CURRENT_BINARY_DIR}/include/beetree/experimental/tokens.hpp
+            ${CMAKE_CURRENT_BINARY_DIR}/beetree-experimental-token-map.json
     COMMAND ${CMAKE_COMMAND} -E echo "Generating tokens for beetree-experimental"
     COMMAND
         python3 ${BeeTreeTools_MAKE_TOKENS}
-        ${tokensPath}
-        ${tokensMapPath}
+        ${CMAKE_CURRENT_BINARY_DIR}/include/beetree/experimental/tokens.hpp
+        ${CMAKE_CURRENT_BINARY_DIR}/beetree-experimental-token-map.json
         ${CMAKE_CURRENT_SOURCE_DIR}/tokens.json
     DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/tokens.json ${BeeTreeTools_MAKE_TOKENS}
 )
 
 add_custom_target(
     beetree-experimental-generated
-    DEPENDS ${tokensPath}
-    SOURCES ${tokensPath}
+    DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/include/beetree/experimental/tokens.hpp
+    SOURCES ${CMAKE_CURRENT_BINARY_DIR}/include/beetree/experimental/tokens.hpp
 )
-target_include_directories(beetree-experimental INTERFACE $<BUILD_INTERFACE:${tokensInc}>)
+target_include_directories(beetree-experimental INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>)
 add_dependencies(beetree-experimental beetree-experimental-generated)
 
 # Test
@@ -50,16 +50,18 @@ endif()
 include(GNUInstallDirs)
 install(
     TARGETS beetree-experimental
-    COMPONENT Development
     EXPORT Beetree
 )
 install(
-    DIRECTORY include/ ${tokensInc}/
+    DIRECTORY include/ 
     TYPE INCLUDE
-    COMPONENT Development
 )
-install(
-    FILES ${tokensMapPaht}
-    DESTINATION ${CMAKE_INSTALL_DATADIR}/beetree
-    COMPONENT beetree-view
-)
+
+# TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# Figure out why the install fails on installing ${CMAKE_CURRENT_BINARY_DIR}/include/
+
+# install(
+#     FILES ${tokensMapPaht}
+#     DESTINATION ${CMAKE_INSTALL_DATADIR}/beetree
+#     COMPONENT beetree-view
+# )

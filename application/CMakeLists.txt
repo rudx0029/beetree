@@ -1,17 +1,3 @@
-#[======================================================================[.rst:
-
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Beetree Platform
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Packages
---------
-
-``Beetree::Platform``
-    Header only library with interfaces integrating platform I/O
-
-#]======================================================================]
-
 cmake_minimum_required(VERSION 3.15)
 project(beetree C CXX ASM)
 
@@ -19,10 +5,9 @@ project(beetree C CXX ASM)
 cmake_policy(SET CMP0076 NEW) # allow relative paths in target_sources
 cmake_policy(SET CMP0077 NEW) # gtest pthreads behavior
 
-
-
 # Options
 # Change CMake's default value to enabled.
+option(BEETREE_BUILD_EXAMPLES "Enable configuring and building BeeTree example applications" OFF)
 option(BEETREE_BUILD_TESTING "Enable configuring and building BeeTree unit tests" ON)
 option(BEETREE_EXPORT_COMPILE_COMMANDS "Enable output of compile commands during generation." ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ${BEETREE_EXPORT_COMPILE_COMMANDS})
@@ -51,38 +36,15 @@ if(BEETREE_BUILD_TESTING AND (CMAKE_SYSTEM_PROCESSOR STREQUAL CMAKE_HOST_SYSTEM_
     enable_testing()
 endif()
 
-add_library(beetree-platform INTERFACE)
-add_library(Beetree::Platform ALIAS beetree-platform)
-set_target_properties(beetree-platform PROPERTIES EXPORT_NAME Platform)
 
-# Dependencies
-# ------------
-target_include_directories(
-    beetree-platform INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-                               $<INSTALL_INTERFACE:include>
-)
+find_package(BeetreePlatform REQUIRED)
 
-# Test
-# ----
-if(BUILD_TESTING)
-    add_subdirectory(test)
-endif()
-
-# Install
-# -------
+add_subdirectory(core)
+add_subdirectory(startpk)
+add_subdirectory(experimental)
 
 install(
-    TARGETS beetree-platform
-    EXPORT BeetreePlatform
-    PUBLIC_HEADER DESTINATION include
-)
-install(
-    DIRECTORY include/
-    TYPE INCLUDE
-)
-install(
-    EXPORT BeetreePlatform
-    FILE BeetreePlatformConfig.cmake
+    EXPORT Beetree
     NAMESPACE Beetree::
     DESTINATION cmake
 )

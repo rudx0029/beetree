@@ -102,7 +102,8 @@ add_custom_command(
     COMMAND
         python3 ${BeeTreeTools_MAKE_TOKENS}
         ${CMAKE_CURRENT_BINARY_DIR}/include/beetree/core/tokens.hpp
-        ${CMAKE_CURRENT_BINARY_DIR}/beetree-token-map.json ${CMAKE_CURRENT_SOURCE_DIR}/tokens.json
+        ${CMAKE_CURRENT_BINARY_DIR}/beetree-token-map.json 
+        ${CMAKE_CURRENT_SOURCE_DIR}/tokens.json
         ${CMAKE_CURRENT_SOURCE_DIR}/tokens-engine.json
     DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/tokens.json ${CMAKE_CURRENT_SOURCE_DIR}/tokens-engine.json
             ${BeeTreeTools_MAKE_TOKENS}
@@ -120,6 +121,7 @@ add_dependencies(beetree beetree-generated)
 # ----
 
 if(BUILD_TESTING)
+    find_package(GTest REQUIRED NO_PACKAGE_ROOT_PATH)
     add_library(beetree-test-api STATIC)
     add_library(Beetree::TestAPI ALIAS beetree-test-api)
     set_target_properties(beetree-test-api PROPERTIES EXPORT_NAME TestAPI)
@@ -147,7 +149,7 @@ if(BUILD_TESTING)
 
     # Dependencies
     # ------------
-    target_link_libraries(beetree-test-api PUBLIC gmock_main)
+    target_link_libraries(beetree-test-api PUBLIC GTest::gmock_main)
     target_link_libraries(beetree-test-api PRIVATE Beetree::Beetree)
     target_include_directories(
         beetree-test-api PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -157,8 +159,7 @@ if(BUILD_TESTING)
     # -------
 
     install(
-        TARGETS beetree-test-api gtest gmock gmock_main
-        COMPONENT Development
+        TARGETS beetree-test-api
         EXPORT Beetree
     )
 
@@ -170,16 +171,14 @@ endif()
 include(GNUInstallDirs)
 install(
     TARGETS beetree
-    COMPONENT Development
     EXPORT Beetree
 )
 install(
     DIRECTORY include/ ${CMAKE_CURRENT_BINARY_DIR}/include/
     TYPE INCLUDE
-    COMPONENT Development
 )
-install(
-    FILES ${CMAKE_CURRENT_BINARY_DIR}/beetree-token-map.json
-    DESTINATION ${CMAKE_INSTALL_DATADIR}/beetree
-    COMPONENT beetree-view
-)
+# install(
+#     FILES ${CMAKE_CURRENT_BINARY_DIR}/beetree-token-map.json
+#     DESTINATION ${CMAKE_INSTALL_DATADIR}/beetree
+#     COMPONENT beetree-view
+# )
