@@ -13,7 +13,7 @@ Packages
 #]======================================================================]
 
 cmake_minimum_required(VERSION 3.15)
-project(beetree C CXX ASM)
+project(beetree-platform C CXX ASM)
 
 # Policies
 cmake_policy(SET CMP0076 NEW) # allow relative paths in target_sources
@@ -23,9 +23,11 @@ cmake_policy(SET CMP0077 NEW) # gtest pthreads behavior
 
 # Options
 # Change CMake's default value to enabled.
-option(BEETREE_BUILD_TESTING "Enable configuring and building BeeTree unit tests" ON)
-option(BEETREE_EXPORT_COMPILE_COMMANDS "Enable output of compile commands during generation." ON)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ${BEETREE_EXPORT_COMPILE_COMMANDS})
+option(BEE_BUILD_TESTING "Enable configuring and building BeeTree unit tests" ON)
+option(BEE_EXPORT_COMPILE_COMMANDS "Enable output of compile commands during generation." ON)
+if(NOT DEFINED ENV{CMAKE_EXPORT_COMPILE_COMMANDS})
+    set(CMAKE_EXPORT_COMPILE_COMMANDS ${BEE_EXPORT_COMPILE_COMMANDS})
+endif()
 
 # CMake Module Path
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
@@ -45,7 +47,7 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Debug")
 endif()
 
-if(BEETREE_BUILD_TESTING AND (CMAKE_SYSTEM_PROCESSOR STREQUAL CMAKE_HOST_SYSTEM_PROCESSOR))
+if(BEE_BUILD_TESTING AND (CMAKE_SYSTEM_PROCESSOR STREQUAL CMAKE_HOST_SYSTEM_PROCESSOR))
     message(STATUS "[BeeTree] Unit tests are enabled")
     include(CTest)
     enable_testing()
@@ -71,15 +73,8 @@ endif()
 # Install
 # -------
 
-install(
-    TARGETS beetree-platform
-    EXPORT BeetreePlatform
-    PUBLIC_HEADER DESTINATION include
-)
-install(
-    DIRECTORY include/
-    TYPE INCLUDE
-)
+install(TARGETS beetree-platform EXPORT BeetreePlatform)
+install(DIRECTORY include/ TYPE INCLUDE) # to export the include directory of an inteface library
 install(
     EXPORT BeetreePlatform
     FILE BeetreePlatformConfig.cmake

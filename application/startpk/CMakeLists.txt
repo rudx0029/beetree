@@ -147,11 +147,8 @@ if(BUILD_TESTING)
 
     # Install
     # -------
-    install(
-        TARGETS beetree-startpk-test-api
-        EXPORT Beetree
-        PUBLIC_HEADER DESTINATION include
-    )
+    install(TARGETS beetree-startpk-test-api EXPORT Beetree)
+
     add_subdirectory(test)
 endif()
 

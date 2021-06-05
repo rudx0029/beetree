@@ -37,7 +37,7 @@ ExternalProject_Add(
     CMAKE_CACHE_ARGS
         -DCMAKE_TOOLCHAIN_FILE:STRING=${CMAKE_TOOLCHAIN_FILE}
         -DCMAKE_INSTALL_PREFIX:STRING=${__studiobee_prefix}/beetree-platform
-        -DBEETREE_BUILD_TESTING:BOOL=${STUDIOBEE_BUILD_TESTING}
+        -DBEE_BUILD_TESTING:BOOL=${STUDIOBEE_BUILD_TESTING}
         -DGTest_DIR:STRING=${__studiobee_prefix}/googletest/lib/cmake/GTest
     LOG_BUILD ${__studiobee_log_build}
     LOG_OUTPUT_ON_FAILURE TRUE
@@ -55,7 +55,7 @@ ExternalProject_Add(
     CMAKE_CACHE_ARGS
         -DCMAKE_TOOLCHAIN_FILE:STRING=${CMAKE_TOOLCHAIN_FILE}
         -DCMAKE_INSTALL_PREFIX:STRING=${__studiobee_prefix}/beetree
-        -DBEETREE_BUILD_TESTING:BOOL=${STUDIOBEE_BUILD_TESTING}
+        -DBEE_BUILD_TESTING:BOOL=${STUDIOBEE_BUILD_TESTING}
         -DBeetreePlatform_DIR:STRING=${__studiobee_prefix}/beetree-platform/cmake
         -DGTest_DIR:STRING=${__studiobee_prefix}/googletest/lib/cmake/GTest
     LOG_BUILD ${__studiobee_log_build}
@@ -63,6 +63,26 @@ ExternalProject_Add(
     LOG_MERGED_STDOUTERR TRUE  
 )
 add_dependencies(EP_Beetree EP_BeetreePlatform EP_GoogleTest)
+
+if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL ${CMAKE_HOST_SYSTEM_PROCESSOR} OR NOT CMAKE_TOOLCHAIN_FILE)     
+    ExternalProject_Add(
+        EP_BeetreePlatformOs
+        PREFIX ${__studiobee_prefix}/beetree-platform-os
+        SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/platform-os
+        BINARY_DIR ${__studiobee_build}/beetree-platform-os
+        DOWNLOAD_COMMAND ""
+        UPDATE_COMMAND ""
+        CMAKE_CACHE_ARGS
+            -DCMAKE_INSTALL_PREFIX:STRING=${__studiobee_prefix}/beetree-platform-os
+            -DBEE_BUILD_TESTING:BOOL=${STUDIOBEE_BUILD_TESTING}
+            -DBeetreePlatform_DIR:STRING=${__studiobee_prefix}/beetree-platform/cmake
+            -DGTest_DIR:STRING=${__studiobee_prefix}/googletest/lib/cmake/GTest
+        LOG_BUILD ${__studiobee_log_build}
+        LOG_OUTPUT_ON_FAILURE TRUE
+        LOG_MERGED_STDOUTERR TRUE  
+    )
+endif()
+add_dependencies(EP_BeetreePlatformOs EP_BeetreePlatform EP_GoogleTest)
 
 add_library(Beetree::Beetree STATIC IMPORTED)
 set_target_properties(

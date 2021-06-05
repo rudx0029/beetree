@@ -53,7 +53,7 @@ install(
     EXPORT Beetree
 )
 install(
-    DIRECTORY include/ 
+    DIRECTORY include/ ${CMAKE_CURRENT_BINARY_DIR}/include/
     TYPE INCLUDE
 )
 
