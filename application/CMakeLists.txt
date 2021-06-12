@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(beetree C CXX ASM)
+project(beetree LANGUAGES C CXX ASM VERSION 0.1.0.0)
 
 # Policies
 cmake_policy(SET CMP0076 NEW) # allow relative paths in target_sources

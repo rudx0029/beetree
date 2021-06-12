@@ -16,7 +16,7 @@ Dependencies
 ``Threads::Threads``
 #]=======================================================================]
 cmake_minimum_required(VERSION 3.15)
-project(beetree-platform-os C CXX ASM)
+project(beetree-platform-os LANGUAGES C CXX ASM VERSION 0.1.0.0)
 
 # Policies
 cmake_policy(SET CMP0076 NEW) # allow relative paths in target_sources
@@ -80,6 +80,7 @@ target_sources(beetree-platform-os PRIVATE src/system-clock.cpp src/udp-send.cpp
 # Install
 # -------
 install(TARGETS beetree-platform-os EXPORT BeetreePlatformOs)
+install(DIRECTORY include/ TYPE INCLUDE)
 install(
     EXPORT BeetreePlatformOs
     FILE BeetreePlatformOsConfig.cmake
