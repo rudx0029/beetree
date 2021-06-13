@@ -197,3 +197,64 @@ if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL ${CMAKE_HOST_SYSTEM_PROCESSOR} OR NOT CMAK
     __studiobee_add_library(Beetree::Platform::OS STATIC ${BINARY_DIR} "beetree-platform-os")
     target_link_libraries(Beetree::Platform::OS INTERFACE Beetree::Platform )
 endif()
+
+if(CMAKE_SYSTEM_PROCESSOR MATCHES "cortex-m0")
+    ExternalProject_Add(
+        EP_BeetreePlatformStm32f0xx
+        PREFIX ${__studiobee_prefix}/beetree-platform-stm32f0xx
+        SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/platforms/beetree-platform-stm32f0xx
+        BINARY_DIR ${__studiobee_build}/beetree-platform-stm32f0xx
+        BUILD_ALWAYS ON
+        CMAKE_CACHE_ARGS
+            -DCMAKE_TOOLCHAIN_FILE:STRING=${CMAKE_TOOLCHAIN_FILE}
+            -DCMAKE_INSTALL_PREFIX:STRING=${__studiobee_prefix}/beetree-platform-stm32f0xx
+            -DBeetreePlatform_DIR:STRING=${__studiobee_prefix}/beetree-platform/cmake
+        ${__studiobee_log_cmd}
+    )
+    ExternalProject_Get_Property(EP_BeetreePlatformStm32f0xx BINARY_DIR)
+    add_dependencies(EP_BeetreePlatformStm32f0xx EP_BeetreePlatform)
+
+    __studiobee_add_library(Beetree::Platform::stm32f0xx STATIC ${BINARY_DIR} "beetree-platform-stm32f0xx")
+    target_link_libraries(Beetree::Platform::stm32f0xx INTERFACE Beetree::Platform )
+endif()
+
+if(CMAKE_SYSTEM_PROCESSOR MATCHES "cortex-m3")
+    ExternalProject_Add(
+        EP_BeetreePlatformStm32f1xx
+        PREFIX ${__studiobee_prefix}/beetree-platform-stm32f1xx
+        SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/platforms/beetree-platform-stm32f1xx
+        BINARY_DIR ${__studiobee_build}/beetree-platform-stm32f1xx
+        BUILD_ALWAYS ON
+        CMAKE_CACHE_ARGS
+            -DCMAKE_TOOLCHAIN_FILE:STRING=${CMAKE_TOOLCHAIN_FILE}
+            -DCMAKE_INSTALL_PREFIX:STRING=${__studiobee_prefix}/beetree-platform-stm32f1xx
+            -DBeetreePlatform_DIR:STRING=${__studiobee_prefix}/beetree-platform/cmake
+        ${__studiobee_log_cmd}
+    )
+    ExternalProject_Get_Property(EP_BeetreePlatformStm32f1xx BINARY_DIR)
+    add_dependencies(EP_BeetreePlatformStm32f1xx EP_BeetreePlatform)
+
+    __studiobee_add_library(Beetree::Platform::stm32f1xx STATIC ${BINARY_DIR} "beetree-platform-stm32f1xx")
+    target_link_libraries(Beetree::Platform::stm32f1xx INTERFACE Beetree::Platform )
+endif()
+
+if(CMAKE_SYSTEM_PROCESSOR MATCHES "cortex-m3")
+    ExternalProject_Add(
+        EP_BeetreePlatformStm32g0xx
+        PREFIX ${__studiobee_prefix}/beetree-platform-stm32g0xx
+        SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/platforms/beetree-platform-stm32g0xx
+        BINARY_DIR ${__studiobee_build}/beetree-platform-stm32g0xx
+        BUILD_ALWAYS ON
+        CMAKE_CACHE_ARGS
+            -DCMAKE_TOOLCHAIN_FILE:STRING=${CMAKE_TOOLCHAIN_FILE}
+            -DCMAKE_INSTALL_PREFIX:STRING=${__studiobee_prefix}/beetree-platform-stm32g0xx
+            -DBeetreePlatform_DIR:STRING=${__studiobee_prefix}/beetree-platform/cmake
+        ${__studiobee_log_cmd}
+    )
+    ExternalProject_Get_Property(EP_BeetreePlatformStm32g0xx BINARY_DIR)
+    add_dependencies(EP_BeetreePlatformStm32g0xx EP_BeetreePlatform)
+
+    __studiobee_add_library(Beetree::Platform::stm32g0xx STATIC ${BINARY_DIR} "beetree-platform-stm32g0xx")
+    target_link_libraries(Beetree::Platform::stm32g0xx INTERFACE Beetree::Platform )
+endif()
+

@@ -17,9 +17,17 @@ Dependencies
 
 .. note: The extensive directory structure is in order to expose the vendor's bsp
 #]=======================================================================]
+cmake_minimum_required(VERSION 3.15)
+project(beetree-platform-stm32f0xx LANGUAGES C CXX ASM VERSION 0.1.0.0)
 
-if(NOT CMAKE_SYSTEM_PROCESSOR STREQUAL "cortex-m0")
-    return()
+# Policies
+cmake_policy(SET CMP0076 NEW) # allow relative paths in target_sources
+
+# Options
+# Change CMake's default value to enabled.
+option(BEE_EXPORT_COMPILE_COMMANDS "Enable output of compile commands during generation." ON)
+if(NOT DEFINED ENV{CMAKE_EXPORT_COMPILE_COMMANDS})
+    set(CMAKE_EXPORT_COMPILE_COMMANDS ${BEE_EXPORT_COMPILE_COMMANDS})
 endif()
 
 # C/C++ Standards
@@ -29,6 +37,15 @@ set(CMAKE_C_EXTENSIONS ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON)
+
+# force debug build type if not specified
+# NOTE: This means that we will only support single configuration editors.
+if(NOT CMAKE_BUILD_TYPE)
+    message(STATUS "[beetree-platform-stm32] Defaulting build type to Debug")
+    set(CMAKE_BUILD_TYPE "Debug")
+endif()
+
+find_package(BeetreePlatform REQUIRED)
 
 # Create an interface library for the stm32f0xx platforms
 # This allows the client to consume the source and apply
