@@ -40,9 +40,9 @@ endif()
 
 find_package(BeetreePlatform REQUIRED)
 
-add_subdirectory(core)
-add_subdirectory(startpk)
-add_subdirectory(experimental)
+add_subdirectory(beetree)
+add_subdirectory(beetree-start-pack)
+add_subdirectory(beetree-experimental)
 
 install(
     EXPORT Beetree

@@ -130,8 +130,8 @@ endif()
 ExternalProject_Add(
     EP_BeetreePlatform
     PREFIX ${__studiobee_prefix}/beetree-platform
-    SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/platform
-    BINARY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/platform/build
+    SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/platforms/beetree-platform
+    BINARY_DIR ${__studiobee_build}/beetree-platform
     BUILD_ALWAYS ON
     CMAKE_CACHE_ARGS
         -DCMAKE_TOOLCHAIN_FILE:STRING=${CMAKE_TOOLCHAIN_FILE}
@@ -151,7 +151,7 @@ ExternalProject_Add(
     EP_Beetree
     PREFIX ${__studiobee_prefix}/beetree
     SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/application
-    BINARY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/application/build
+    BINARY_DIR ${__studiobee_build}/beetree
     BUILD_ALWAYS ON
     CMAKE_CACHE_ARGS
         -DCMAKE_TOOLCHAIN_FILE:STRING=${CMAKE_TOOLCHAIN_FILE}
@@ -181,8 +181,8 @@ if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL ${CMAKE_HOST_SYSTEM_PROCESSOR} OR NOT CMAK
     ExternalProject_Add(
         EP_BeetreePlatformOs
         PREFIX ${__studiobee_prefix}/beetree-platform-os
-        SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/platform-os
-        BINARY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/platform-os/build
+        SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/platforms/beetree-platform-os
+        BINARY_DIR ${__studiobee_build}/beetree-platform-os
         BUILD_ALWAYS ON
         CMAKE_CACHE_ARGS
             -DCMAKE_INSTALL_PREFIX:STRING=${__studiobee_prefix}/beetree-platform-os
