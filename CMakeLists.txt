@@ -74,6 +74,19 @@ list(APPEND __studiobee_log_cmd
     LOG_OUTPUT_ON_FAILURE ON 
     LOG_MERGED_STDOUTERR ON)
 
+# helper method for adding studio bee imported targets
+function(__studiobee_add_library target type bin_dir lib_name)
+    add_library(${target} ${type} IMPORTED)
+    set_target_properties(${target} PROPERTIES 
+        INTERFACE_INCLUDE_DIRECTORIES ${bin_dir}/include
+    )
+    if(type STREQUAL "STATIC")
+        set_target_properties(${target} PROPERTIES 
+            IMPORTED_LOCATION ${BINARY_DIR}/lib/lib${lib_name}.a
+        )
+    endif()
+endfunction()
+
 
 
 #===============================================================================
@@ -131,8 +144,7 @@ if(STUDIOBEE_BUILD_TESTING)
     add_dependencies(EP_BeetreePlatform EP_GoogleTest)
 endif()
 ExternalProject_Get_Property(EP_BeetreePlatform BINARY_DIR)
-add_library(Beetree::Platform INTERFACE IMPORTED)
-set_target_properties(Beetree::Platform PROPERTIES INTERFACE_INCLUDE_DIRECTORIES ${BINARY_DIR}/include)
+__studiobee_add_library(Beetree::Platform INTERFACE ${BINARY_DIR} "")
 add_dependencies(Beetree::Platform EP_BeetreePlatform)
 
 ExternalProject_Add(
@@ -152,22 +164,16 @@ ExternalProject_Add(
 add_dependencies(EP_Beetree EP_BeetreePlatform)
 ExternalProject_Get_Property(EP_Beetree BINARY_DIR)
 
-add_library(Beetree::Beetree STATIC IMPORTED)
+__studiobee_add_library(Beetree::Beetree STATIC ${BINARY_DIR} "beetree")
 target_link_libraries(Beetree::Beetree INTERFACE Beetree::Platform)
-set_target_properties(Beetree::Beetree PROPERTIES 
-    INTERFACE_INCLUDE_DIRECTORIES ${BINARY_DIR}/include
-    IMPORTED_LOCATION ${BINARY_DIR}/lib/libbeetree.a
-)
 add_dependencies(Beetree::Beetree EP_Beetree)
 
-add_library(Beetree::StartPack STATIC IMPORTED)
+__studiobee_add_library(Beetree::StartPack STATIC ${BINARY_DIR} "beetree-start-pack")
 target_link_libraries(Beetree::StartPack INTERFACE Beetree::Beetree)
-set_target_properties(Beetree::StartPack PROPERTIES IMPORTED_LOCATION ${BINARY_DIR}/lib/libbeetree-start-pack.a)
 
 if(STUDIOBEE_BUILD_TESTING)
-    add_library(Beetree::TestAPI STATIC IMPORTED)
+    __studiobee_add_library(Beetree::TestAPI STATIC ${BINARY_DIR} "beetree-test-api")
     target_link_libraries(Beetree::TestAPI INTERFACE Beetree::Beetree beetree_gmock)
-    set_target_properties(Beetree::TestAPI PROPERTIES IMPORTED_LOCATION ${BINARY_DIR}/lib/libbeetree-test-api.a)
 endif()
 
 
@@ -187,9 +193,7 @@ if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL ${CMAKE_HOST_SYSTEM_PROCESSOR} OR NOT CMAK
     )
     ExternalProject_Get_Property(EP_BeetreePlatformOs BINARY_DIR)
     add_dependencies(EP_BeetreePlatformOs EP_BeetreePlatform)
-    add_library(Beetree::Platform::OS STATIC IMPORTED)
-    set_target_properties(Beetree::Platform::OS PROPERTIES
-        INTERFACE_INCLUDE_DIRECTORIES ${BINARY_DIR}/include
-        IMPORTED_LOCATION ${BINARY_DIR}/lib/libbeetree-platform-os.a
-    )
+    
+    __studiobee_add_library(Beetree::Platform::OS STATIC ${BINARY_DIR} "beetree-platform-os")
+    target_link_libraries(Beetree::Platform::OS INTERFACE Beetree::Platform )
 endif()
