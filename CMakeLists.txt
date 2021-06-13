@@ -52,10 +52,6 @@ Build Options
 
 ``STUDIOBEE_BUILD_TESTING``
     Builds Beetree unit tests and create CTest targets. Default is ``ON``
-
-``STUDIOBEE_QUIET_BUILD``
-    Disables logging of Beetree compilation output to standard out and log
-    files. Default is ``OFF``
   
 #]=============================================================================]
 
@@ -67,17 +63,18 @@ project(studio-bee C CXX ASM)
 # OPTIONS
 #===============================================================================
 option(STUDIOBEE_BUILD_TESTING "Enable configuring and building of Studio Bee unit tests" ON)
-option(STUDIOBEE_QUIET_BUILD "Disable build logging of Studio Bee targets" OFF)
 
 include(ExternalProject)
 
 set(__studiobee_prefix ${CMAKE_CURRENT_BINARY_DIR}/studio-bee)
 set(__studiobee_build ${__studiobee_prefix}/build)
-if(STUDIOBEE_QUIET_BUILD)
-    set(__studiobee_log_build FALSE)
-else()
-    set(__studiobee_log_build TRUE)
-endif()
+
+# studio bee external projects logging settings
+list(APPEND __studiobee_log_cmd 
+    LOG_OUTPUT_ON_FAILURE ON 
+    LOG_MERGED_STDOUTERR ON)
+
+
 
 #===============================================================================
 # DEPENDENCIES
@@ -95,9 +92,7 @@ if(STUDIOBEE_BUILD_TESTING)
         URL_MD5 97c8d0b4e29aa4c663362b79ac2abc93
         BINARY_DIR ${__studiobee_build}/googletest
         CMAKE_ARGS -DCMAKE_INSTALL_PREFIX:PATH=${__studiobee_prefix}/googletest
-        LOG_BUILD ${__studiobee_log_build}
-        LOG_OUTPUT_ON_FAILURE TRUE
-        LOG_MERGED_STDOUTERR TRUE  
+        ${__studiobee_log_cmd}
     )
     ExternalProject_Get_Property(EP_GoogleTest BINARY_DIR)
     add_library(beetree_gtest UNKNOWN IMPORTED)
@@ -123,17 +118,14 @@ ExternalProject_Add(
     EP_BeetreePlatform
     PREFIX ${__studiobee_prefix}/beetree-platform
     SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/platform
-    BINARY_DIR ${__studiobee_build}/beetree-platform
-    DOWNLOAD_COMMAND ""
-    UPDATE_COMMAND ""
+    BINARY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/platform/build
+    BUILD_ALWAYS ON
     CMAKE_CACHE_ARGS
         -DCMAKE_TOOLCHAIN_FILE:STRING=${CMAKE_TOOLCHAIN_FILE}
         -DCMAKE_INSTALL_PREFIX:STRING=${__studiobee_prefix}/beetree-platform
         -DBEE_BUILD_TESTING:BOOL=${STUDIOBEE_BUILD_TESTING}
         -DGTest_DIR:STRING=${__studiobee_prefix}/googletest/lib/cmake/GTest
-    LOG_BUILD ${__studiobee_log_build}
-    LOG_OUTPUT_ON_FAILURE TRUE
-    LOG_MERGED_STDOUTERR TRUE  
+    ${__studiobee_log_cmd}
 )
 if(STUDIOBEE_BUILD_TESTING)
     add_dependencies(EP_BeetreePlatform EP_GoogleTest)
@@ -147,18 +139,15 @@ ExternalProject_Add(
     EP_Beetree
     PREFIX ${__studiobee_prefix}/beetree
     SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/application
-    BINARY_DIR ${__studiobee_build}/beetree
-    DOWNLOAD_COMMAND ""
-    UPDATE_COMMAND ""
+    BINARY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/application/build
+    BUILD_ALWAYS ON
     CMAKE_CACHE_ARGS
         -DCMAKE_TOOLCHAIN_FILE:STRING=${CMAKE_TOOLCHAIN_FILE}
         -DCMAKE_INSTALL_PREFIX:STRING=${__studiobee_prefix}/beetree
         -DBEE_BUILD_TESTING:BOOL=${STUDIOBEE_BUILD_TESTING}
         -DBeetreePlatform_DIR:STRING=${__studiobee_prefix}/beetree-platform/cmake
         -DGTest_DIR:STRING=${__studiobee_prefix}/googletest/lib/cmake/GTest
-    LOG_BUILD ${__studiobee_log_build}
-    LOG_OUTPUT_ON_FAILURE TRUE
-    LOG_MERGED_STDOUTERR TRUE  
+    ${__studiobee_log_cmd}
 )
 add_dependencies(EP_Beetree EP_BeetreePlatform)
 ExternalProject_Get_Property(EP_Beetree BINARY_DIR)
@@ -187,17 +176,14 @@ if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL ${CMAKE_HOST_SYSTEM_PROCESSOR} OR NOT CMAK
         EP_BeetreePlatformOs
         PREFIX ${__studiobee_prefix}/beetree-platform-os
         SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/platform-os
-        BINARY_DIR ${__studiobee_build}/beetree-platform-os
-        DOWNLOAD_COMMAND ""
-        UPDATE_COMMAND ""
+        BINARY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/platform-os/build
+        BUILD_ALWAYS ON
         CMAKE_CACHE_ARGS
             -DCMAKE_INSTALL_PREFIX:STRING=${__studiobee_prefix}/beetree-platform-os
             -DBEE_BUILD_TESTING:BOOL=${STUDIOBEE_BUILD_TESTING}
             -DBeetreePlatform_DIR:STRING=${__studiobee_prefix}/beetree-platform/cmake
             -DGTest_DIR:STRING=${__studiobee_prefix}/googletest/lib/cmake/GTest
-        LOG_BUILD ${__studiobee_log_build}
-        LOG_OUTPUT_ON_FAILURE TRUE
-        LOG_MERGED_STDOUTERR TRUE  
+        ${__studiobee_log_cmd}
     )
     ExternalProject_Get_Property(EP_BeetreePlatformOs BINARY_DIR)
     add_dependencies(EP_BeetreePlatformOs EP_BeetreePlatform)
