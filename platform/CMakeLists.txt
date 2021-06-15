@@ -1,6 +1,0 @@
-add_subdirectory(interface)
-add_subdirectory(core)
-add_subdirectory(host)
-add_subdirectory(stm32f0xx)
-add_subdirectory(stm32g0xx)
-add_subdirectory(stm32f1xx)
