@@ -1,4 +1,3 @@
-cmake_minimum_required(VERSION 3.14)
 # Beetree Embedded Behavior Tree Library
 # ======================================
 #
@@ -121,7 +120,6 @@ add_dependencies(beetree beetree-generated)
 # ----
 
 if(BUILD_TESTING)
-    find_package(GTest REQUIRED NO_PACKAGE_ROOT_PATH)
     add_library(beetree-test-api STATIC)
     add_library(Beetree::TestAPI ALIAS beetree-test-api)
     set_target_properties(beetree-test-api PROPERTIES EXPORT_NAME TestAPI)
@@ -149,7 +147,7 @@ if(BUILD_TESTING)
 
     # Dependencies
     # ------------
-    target_link_libraries(beetree-test-api PUBLIC GTest::gmock_main)
+    target_link_libraries(beetree-test-api PUBLIC Beetree::gmock_main)
     target_link_libraries(beetree-test-api PRIVATE Beetree::Beetree)
     target_include_directories(
         beetree-test-api PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
