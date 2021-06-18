@@ -1,7 +1,5 @@
-find_package(GTest REQUIRED NO_PACKAGE_ROOT_PATH)
-
 add_executable(test-beetree-experimental test-expected.cpp)
 
-target_link_libraries(test-beetree-experimental PRIVATE GTest::gmock_main BeeTree::Experimental)
+target_link_libraries(test-beetree-experimental PRIVATE Beetree::gmock_main Beetree::Experimental)
 
 add_test(NAME test-beetree-experimental COMMAND test-beetree-experimental)

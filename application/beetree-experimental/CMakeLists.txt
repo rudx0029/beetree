@@ -1,5 +1,5 @@
 add_library(beetree-experimental INTERFACE)
-add_library(BeeTree::Experimental ALIAS beetree-experimental)
+add_library(Beetree::Experimental ALIAS beetree-experimental)
 target_include_directories(
     beetree-experimental
     INTERFACE
@@ -15,9 +15,7 @@ set(tokensInc ${CMAKE_CURRENT_BINARY_DIR}/include)
 set(tokensPath ${tokensInc}/beetree/experimental/tokens.hpp)
 set(tokensMapPath ${CMAKE_CURRENT_BINARY_DIR}/beetree-experimental-token-map.json)
 
-
 find_package(BeeTreeTools REQUIRED)
-
 
 add_custom_command(
     OUTPUT  ${CMAKE_CURRENT_BINARY_DIR}/include/beetree/experimental/tokens.hpp
@@ -65,3 +63,4 @@ install(
 #     DESTINATION ${CMAKE_INSTALL_DATADIR}/beetree
 #     COMPONENT beetree-view
 # )
+
