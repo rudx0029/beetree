@@ -14,25 +14,21 @@ namespace bte {
 class DebugService : public IDebugService
 {
 public:
-    void configure(IDiscreteOutput& toggle_led, IDiscreteOutput& debug_pin)
-    {
-        m_toggle_led = &toggle_led;
-        m_debug_pin  = &debug_pin;
-    }
+    const IDebugService::Model& model() const override { return m_model; }
+
     void toggle_led() override
     {
-        if (m_toggle_led) m_toggle_led->toggle();
+        m_model.is_led_set = !m_model.is_led_set;
     }
     void toggle_debug_pin() override
     {
-        if (m_debug_pin) m_debug_pin->toggle();
+        m_model.is_debug_pin_set = !m_model.is_debug_pin_set;
     }
     void feed_the_dog() override
     { /*TODO*/
     }
 
 private:
-    IDiscreteOutput* m_toggle_led = nullptr;
-    IDiscreteOutput* m_debug_pin  = nullptr;
+    IDebugService::Model m_model;
 };
 }  // namespace bte

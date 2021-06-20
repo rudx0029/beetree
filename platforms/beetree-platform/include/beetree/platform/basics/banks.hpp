@@ -21,7 +21,7 @@ namespace registry {
 ///                     items in the Bank.
 template <class KeysEnum>
 using Bank    = std::array<Value, static_cast<std::size_t>(KeysEnum::NUM_ITEMS)>;
-using BankRef = array_ref<Bank::value_type>;
+using BankRef = array_ref<Value>;
 
 /// A registry Provider is an array of register banks, where a register
 /// bank is an array of data items. The application
@@ -40,25 +40,25 @@ using BanksRef = array_ref<BankRef>;
 
 
 
-struct Provider {
-private:
-    Bank<A> m_bank_a;
-    Bank<B> m_bank_b;
-    Bank<C> m_bank_c;
+// struct Provider {
+// private:
+//     Bank<A> m_bank_a;
+//     Bank<B> m_bank_b;
+//     Bank<C> m_bank_c;
     
-    Banks<BanksEnum> m_banks = { array_ref(bank_a), array_ref(bank_b), array_ref(bank_c)};
+//     Banks<BanksEnum> m_banks = { array_ref(bank_a), array_ref(bank_b), array_ref(bank_c)};
 
 
-public:
-    const BankRef bank_a() const;
-    BankRef bank_a() const;
+// public:
+//     const BankRef bank_a() const;
+//     BankRef bank_a() const;
 
-    const BankRef bank_a() const;
+//     const BankRef bank_a() const;
 
 
-    BanksRef banks();
-    const BanksRef& banks();
-}
+//     BanksRef banks();
+//     const BanksRef& banks();
+// }
 
 }  // namespace registry
 }  // namespace bte
